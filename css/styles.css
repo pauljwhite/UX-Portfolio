@@ -596,6 +596,31 @@ a {
   letter-spacing: -0.01em;
 }
 
+/* Credentials row in About */
+.about-creds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+.cred {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: -0.01em;
+}
+
+.cred-icon {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
 /* -------------------------
    About
    ------------------------- */
