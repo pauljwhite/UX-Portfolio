@@ -1,0 +1,401 @@
+/* ============================================================
+   PAUL WHITE — Case Study Pages
+   ============================================================ */
+
+/* -------------------------
+   Back nav
+   ------------------------- */
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-3);
+  letter-spacing: -0.01em;
+  margin-bottom: 56px;
+  transition: color 0.18s var(--ease);
+  text-decoration: none;
+}
+
+.cs-back:hover { color: var(--text-1); }
+
+/* -------------------------
+   Case Study Hero
+   ------------------------- */
+.cs-hero {
+  padding: calc(var(--nav-h) + 80px) 40px 80px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.cs-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 20px;
+}
+
+.cs-title {
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--text-1);
+  margin-bottom: 16px;
+  max-width: 900px;
+}
+
+.cs-subtitle {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 400;
+  color: var(--text-2);
+  letter-spacing: -0.02em;
+  margin-bottom: 60px;
+}
+
+/* Meta row */
+.cs-meta {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border-lt);
+  padding-top: 40px;
+}
+
+.cs-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 56px;
+  margin-right: 56px;
+  border-right: 1px solid var(--border-lt);
+  padding-top: 0;
+  margin-bottom: 24px;
+}
+
+.cs-meta-item:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.cs-meta-item span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cs-meta-item strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------
+   Hero Image
+   ------------------------- */
+.cs-cover {
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+  background: var(--bg-off);
+}
+
+.cs-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -------------------------
+   Case Study Sections
+   ------------------------- */
+.cs-section {
+  padding: 100px 40px;
+  border-top: 1px solid var(--border-lt);
+}
+
+.cs-section--alt {
+  background: var(--bg-off);
+}
+
+.cs-container {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+/* Two-column: narrow label / wide content */
+.cs-two-col {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.cs-col-label {
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+}
+
+.cs-col-label h2 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cs-col-content p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-2);
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.cs-col-content p:last-child { margin-bottom: 0; }
+
+.cs-col-content h3 {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-1);
+  margin-bottom: 12px;
+  margin-top: 48px;
+}
+
+.cs-col-content h3:first-child { margin-top: 0; }
+
+.cs-col-content h4 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: 8px;
+  margin-top: 32px;
+}
+
+.cs-col-content h4:first-child { margin-top: 0; }
+
+/* Problem cards */
+.cs-problems {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border-lt);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.cs-problem {
+  background: var(--bg);
+  padding: 32px;
+}
+
+.cs-problem h4 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.cs-problem p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin-bottom: 0;
+}
+
+/* Result cards */
+.cs-results {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cs-result {
+  padding: 36px;
+  background: var(--bg-off);
+  border-radius: 16px;
+}
+
+.cs-result h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.cs-result p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-2);
+  margin-bottom: 0;
+}
+
+/* Inline images */
+.cs-img {
+  margin: 48px 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-off);
+}
+
+.cs-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-img-caption {
+  font-size: 12px;
+  color: var(--text-3);
+  text-align: center;
+  margin-top: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* Tier cards */
+.cs-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.cs-tier {
+  padding: 28px;
+  background: var(--bg-off);
+  border-radius: 14px;
+  border: 1px solid var(--border-lt);
+}
+
+.cs-tier-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.cs-tier h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 8px;
+  margin-top: 0;
+  letter-spacing: -0.02em;
+}
+
+.cs-tier p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin-bottom: 0;
+}
+
+/* Coming soon */
+.cs-coming-soon {
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.cs-coming-soon h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-1);
+  margin-bottom: 16px;
+}
+
+.cs-coming-soon p {
+  font-size: 17px;
+  color: var(--text-2);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* -------------------------
+   Case Nav (prev / next)
+   ------------------------- */
+.cs-nav {
+  border-top: 1px solid var(--border-lt);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cs-nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 48px 40px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s var(--ease);
+}
+
+.cs-nav-item:first-child {
+  border-right: 1px solid var(--border-lt);
+}
+
+.cs-nav-item:hover { background: var(--bg-off); }
+
+.cs-nav-dir {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.cs-nav-item:last-child .cs-nav-dir { text-align: right; }
+
+.cs-nav-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text-1);
+}
+
+.cs-nav-item:last-child .cs-nav-title { text-align: right; }
+
+/* -------------------------
+   Responsive
+   ------------------------- */
+@media (max-width: 1024px) {
+  .cs-two-col {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .cs-col-label { position: static; }
+  .cs-tiers { grid-template-columns: 1fr; }
+  .cs-problems { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .cs-hero { padding: calc(var(--nav-h) + 48px) 20px 60px; }
+  .cs-section { padding: 60px 20px; }
+  .cs-meta { flex-direction: column; gap: 24px; }
+  .cs-meta-item { border-right: none; padding-right: 0; margin-right: 0; border-bottom: 1px solid var(--border-lt); padding-bottom: 24px; }
+  .cs-meta-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .cs-nav { grid-template-columns: 1fr; }
+  .cs-nav-item:first-child { border-right: none; border-bottom: 1px solid var(--border-lt); }
+  .cs-nav-item:last-child .cs-nav-dir,
+  .cs-nav-item:last-child .cs-nav-title { text-align: left; }
+  .cs-coming-soon { padding: 80px 20px; }
+}
