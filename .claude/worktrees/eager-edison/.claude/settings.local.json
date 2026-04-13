@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "WebFetch(domain:ivory-rectangle-205572.framer.app)",
+      "Bash(curl -s -o paul-photo.png \"https://framerusercontent.com/images/J2v15puqUk6es37RHADhzABORf4.png\")",
+      "Bash(curl -s -o case-01-governance.png \"https://framerusercontent.com/images/leX90db3X6QFqNmNf5NP478rY.png\")",
+      "Bash(curl -s -o case-02-design-system.png \"https://framerusercontent.com/images/qMknton5iSLUcQt6VggNBv6L3GI.png\")",
+      "Bash(curl -s -o case-03-custom-dashboards.png \"https://framerusercontent.com/images/zciw6kT0XxgOUlZ6hVvwVh2To0M.png\")",
+      "Bash(curl -s -o case-04-navigation.png \"https://framerusercontent.com/images/lRGeigucMBavzTMzH94rUK5fKDw.png\")",
+      "WebFetch(domain:paulwhite.framer.website)",
+      "Bash(gh pr create --base claude/ux-director-portfolio-IIt3U --title 'Redesign: real content, Apple-inspired UI, full case study pages' --body ':*)",
+      "Bash(pkill -f \"python3.*http.server\")"
+    ]
+  }
+}

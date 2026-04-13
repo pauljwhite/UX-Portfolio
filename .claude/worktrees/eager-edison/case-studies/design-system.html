@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System Development — Paul White</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Paul White</a>
+      <div class="nav-links">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch ↗</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="cs-hero">
+    <a href="../index.html#work" class="cs-back">← Work</a>
+    <span class="cs-label">Case Study · 02 / 06</span>
+    <h1 class="cs-title">Design System Development</h1>
+    <p class="cs-subtitle">Standardising UX, improving design efficiency</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item"><span>Role</span><strong>Senior UX Lead &amp; Design Sign-off</strong></div>
+      <div class="cs-meta-item"><span>Team</span><strong>4 UX Designers, 2 PMs, 14 Developers</strong></div>
+      <div class="cs-meta-item"><span>Tools</span><strong>Figma, Airtable</strong></div>
+      <div class="cs-meta-item"><span>Timeline</span><strong>9 Months</strong></div>
+    </div>
+  </div>
+
+  <!-- Cover image -->
+  <div class="cs-cover">
+    <img src="../images/case-02-design-system.png" alt="Design System Development">
+  </div>
+
+  <!-- Overview -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Overview</h2></div>
+        <div class="cs-col-content">
+          <p>To create a more consistent, scalable, and efficient design process, I led the development of our design system — initially working with a third-party agency before bringing the project in-house to better align with our needs. While the agency helped establish a foundation, the delivered system lacked flexibility and alignment with our design language and workflows. Recognising this, I drove the transition to an internally managed design system, refining the design language, expanding the component library, and working closely with engineering to ensure technical feasibility. By embedding governance and continuous improvement processes, the design system became a core part of our product development workflow. It improved UX consistency, reduced design and development time, and strengthened collaboration between teams.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Problem</h2></div>
+        <div class="cs-col-content">
+          <p>Without a unified design system, teams were working from fragmented UI patterns and inconsistent components — slowing delivery and creating a disjointed experience across products.</p>
+          <div class="cs-problems">
+            <div class="cs-problem">
+              <h4>Inconsistent User Experience</h4>
+              <p>Variations in UI elements across different products created a fragmented experience for users as the team transitioned between UI frameworks.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>Inefficiencies in Design &amp; Development</h4>
+              <p>Without reusable components, design and development teams repeatedly solved the same problems, slowing down delivery.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>Scalability Challenges</h4>
+              <p>New features required extensive design effort, as there was no single source of truth for UI patterns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Approach -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Approach</h2></div>
+        <div class="cs-col-content">
+
+          <h3>Leading the Initial Design System (Agency Phase)</h3>
+          <p>As the lead liaison with the third-party agency, I worked to define the foundation of our design system — establishing core design principles, foundational components (typography, colour, basic UI), and aligning with product and engineering teams. However, as the project progressed, it became clear the agency's approach lacked the flexibility and scalability required for long-term growth.</p>
+
+          <h3>Bringing the Design System In-House</h3>
+          <p>We made the strategic decision to take full ownership. This allowed us to:</p>
+
+          <h4>Refine and Expand the Design Language</h4>
+          <p>Evolved the visual and interaction patterns to better align with our products and user needs.</p>
+
+          <h4>Redesign Components for Scalability</h4>
+          <p>Working closely with engineering, ensured every component was technically feasible and easy to implement using atomic design methodology.</p>
+
+          <h4>Improve Documentation and Adoption</h4>
+          <p>Created clear, accessible documentation to support teams in using the system effectively.</p>
+
+          <h4>Fix Usability Gaps</h4>
+          <p>Reviewed and refined interactive elements (tabs, buttons, inputs, dropdowns) to improve style, comprehension and overall usability.</p>
+
+          <h4>Redefine the Colour System for Accessibility</h4>
+          <p>Adjusted colour contrast ratios to meet WCAG AA/AAA standards, ensuring better readability for users with visual impairments, whilst remaining true to marketing brand guidelines.</p>
+
+          <div class="cs-img">
+            <img src="../images/design-system-1.png" alt="Iconography system">
+            <p class="cs-img-caption">Iconography</p>
+          </div>
+          <div class="cs-img">
+            <img src="../images/design-system-2.png" alt="Colour palettes">
+            <p class="cs-img-caption">Colour Palettes</p>
+          </div>
+          <div class="cs-img">
+            <img src="../images/design-system-3.png" alt="Component library">
+            <p class="cs-img-caption">Components</p>
+          </div>
+
+          <h3>Continuous Maintenance &amp; Evolution</h3>
+          <p>Led ongoing audits and updates, close collaboration with development to balance design needs with technical constraints, and scaling the system for future growth by actively managing a backlog of enhancements with engineering teams.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Results</h2></div>
+        <div class="cs-col-content">
+          <div class="cs-results">
+            <div class="cs-result">
+              <h4>A Unified and Scalable Design Language</h4>
+              <p>Eliminated inconsistencies across all interfaces. Standardising visual elements, interaction patterns, and design principles created a cohesive and unified aesthetic that strengthened brand identity and enhanced usability.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Faster and More Efficient Product Development</h4>
+              <p>Reduced design time as designers no longer needed to create patterns from scratch. Engineers could leverage pre-built components, significantly speeding up frontend implementation.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Stronger Collaboration Between Design, Development &amp; PM</h4>
+              <p>With a shared system in place, UX and engineering worked more seamlessly together, ensuring designs were not only visually consistent but also technically viable.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Continuous Evolution and Long-Term Sustainability</h4>
+              <p>Through ongoing governance and collaboration, the design system remained adaptable, supporting new product innovations while maintaining a high standard of design quality.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case nav -->
+  <nav class="cs-nav">
+    <a href="governance.html" class="cs-nav-item">
+      <span class="cs-nav-dir">← Previous</span>
+      <span class="cs-nav-title">Design Governance &amp; Strategy</span>
+    </a>
+    <a href="custom-dashboards.html" class="cs-nav-item">
+      <span class="cs-nav-dir">Next →</span>
+      <span class="cs-nav-title">Customisable Experiences</span>
+    </a>
+  </nav>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>© 2025 Paul White · Oxfordshire, UK</span>
+      <span class="footer-tag">Designed with intention.</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
