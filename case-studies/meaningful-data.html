@@ -1,35 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Making Data Meaningful — Paul White</title>
+  <meta name="theme-color" content="#ffffff">
+  <title>Making Data Meaningful â€” Paul White</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/case-study.css">
 </head>
-<body>
+<body data-theme="dark" class="nav-avatar-static">
   <div class="progress-bar" id="progressBar"></div>
 
-  <nav class="nav" id="nav">
+    <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">Paul White</a>
-      <div class="nav-links">
-        <a href="../index.html#work">Work</a>
+            <a href="../index.html" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="../images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
         <a href="../index.html#experience">Experience</a>
         <a href="../index.html#contact">Contact</a>
       </div>
-      <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch ↗</a>
+      <div class="nav-actions">
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12H2.75M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23 5.46 5.46"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20.2 14.2A8.5 8.5 0 0 1 9.8 3.8a8.8 8.8 0 1 0 10.4 10.4Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
   <div class="cs-hero">
-    <a href="../index.html#work" class="cs-back">← Work</a>
-    <span class="cs-label">Case Study · 06 / 06</span>
+    <a href="../index.html#work" class="cs-back">â† Work</a>
+    <span class="cs-label">Case Study Â· 06 / 06</span>
     <h1 class="cs-title">Making Data Meaningful</h1>
     <p class="cs-subtitle">Transforming complex data into clear, actionable intelligence</p>
     <div class="cs-meta">
@@ -51,7 +77,7 @@
       <div class="cs-two-col">
         <div class="cs-col-label"><h2>Overview</h2></div>
         <div class="cs-col-content">
-          <p>Worked with Sophos Labs to design a suite of data intelligence reports — synthesising outputs from data lakes, machine learning models, and labs algorithms into clear, scannable interfaces. The challenge was significant: translate deeply technical, data-dense information into experiences that could be understood and acted upon by users across every level of cybersecurity maturity — from frontline SOC analysts to executive stakeholders with limited technical knowledge.</p>
+          <p>Worked with Sophos Labs to design a suite of data intelligence reports â€” synthesising outputs from data lakes, machine learning models, and labs algorithms into clear, scannable interfaces. The challenge was significant: translate deeply technical, data-dense information into experiences that could be understood and acted upon by users across every level of cybersecurity maturity â€” from frontline SOC analysts to executive stakeholders with limited technical knowledge.</p>
         </div>
       </div>
     </div>
@@ -70,7 +96,7 @@
             </div>
             <div class="cs-problem">
               <h4>One-Size-Fits-All Reporting</h4>
-              <p>Existing reports didn't account for the wide range of user maturity levels. Content meaningful to a security analyst was impenetrable to a business decision-maker — and vice versa.</p>
+              <p>Existing reports didn't account for the wide range of user maturity levels. Content meaningful to a security analyst was impenetrable to a business decision-maker â€” and vice versa.</p>
             </div>
           </div>
         </div>
@@ -86,22 +112,22 @@
         <div class="cs-col-content">
 
           <h3>Understanding the Data &amp; the Users</h3>
-          <p>Began by working closely with Sophos Labs to understand the data sources — including data lakes, machine learning outputs, and algorithm-generated insights. Simultaneously, conducted research with users across different maturity levels to understand how they consumed threat intelligence and what decisions they needed to make.</p>
+          <p>Began by working closely with Sophos Labs to understand the data sources â€” including data lakes, machine learning outputs, and algorithm-generated insights. Simultaneously, conducted research with users across different maturity levels to understand how they consumed threat intelligence and what decisions they needed to make.</p>
 
           <h4>User Maturity Mapping</h4>
-          <p>Mapped the full spectrum of user types by cybersecurity maturity — from highly technical SOC analysts to executive stakeholders — identifying what each group needed to understand, act on, and communicate to others.</p>
+          <p>Mapped the full spectrum of user types by cybersecurity maturity â€” from highly technical SOC analysts to executive stakeholders â€” identifying what each group needed to understand, act on, and communicate to others.</p>
 
           <h4>Data Hierarchy Design</h4>
-          <p>Established a clear information hierarchy for each report type — surfacing the most critical insights at a glance, with progressive disclosure allowing more technical users to dig deeper into the underlying data.</p>
+          <p>Established a clear information hierarchy for each report type â€” surfacing the most critical insights at a glance, with progressive disclosure allowing more technical users to dig deeper into the underlying data.</p>
 
           <h3>Design &amp; Prototyping</h3>
-          <p>Used Axure to build detailed, interactive prototypes of the report interfaces — testing comprehension with users at different maturity levels to ensure the designs worked across the full spectrum.</p>
+          <p>Used Axure to build detailed, interactive prototypes of the report interfaces â€” testing comprehension with users at different maturity levels to ensure the designs worked across the full spectrum.</p>
 
           <h4>Visual Design Language</h4>
-          <p>Developed a clear visual design language for data presentation — using colour, typography, and iconography to signal severity, status, and priority at a glance. Ensured the language was consistent across all report types.</p>
+          <p>Developed a clear visual design language for data presentation â€” using colour, typography, and iconography to signal severity, status, and priority at a glance. Ensured the language was consistent across all report types.</p>
 
           <h4>Progressive Disclosure</h4>
-          <p>Designed reports with layered information architecture — a clear summary view for executives, with expandable detail sections for technical users who needed to go deeper.</p>
+          <p>Designed reports with layered information architecture â€” a clear summary view for executives, with expandable detail sections for technical users who needed to go deeper.</p>
 
         </div>
       </div>
@@ -117,15 +143,15 @@
           <div class="cs-results">
             <div class="cs-result">
               <h4>Clearer Data Comprehension Across All Levels</h4>
-              <p>The new report designs significantly improved comprehension across the full range of user maturity levels — from executive summaries that communicated risk clearly without technical jargon, to detailed analyst views that surfaced actionable threat intelligence efficiently.</p>
+              <p>The new report designs significantly improved comprehension across the full range of user maturity levels â€” from executive summaries that communicated risk clearly without technical jargon, to detailed analyst views that surfaced actionable threat intelligence efficiently.</p>
             </div>
             <div class="cs-result">
               <h4>Faster Decision-Making</h4>
-              <p>By designing data hierarchies that surfaced the most critical insights at a glance, users across all levels were able to make faster, more informed decisions — reducing the time spent interpreting raw data.</p>
+              <p>By designing data hierarchies that surfaced the most critical insights at a glance, users across all levels were able to make faster, more informed decisions â€” reducing the time spent interpreting raw data.</p>
             </div>
             <div class="cs-result">
               <h4>Scalable Intelligence Reporting Framework</h4>
-              <p>The design patterns and visual language established for the Sophos Labs intelligence suite provided a scalable foundation for future data products — enabling new report types to be built with consistency and clarity from the outset.</p>
+              <p>The design patterns and visual language established for the Sophos Labs intelligence suite provided a scalable foundation for future data products â€” enabling new report types to be built with consistency and clarity from the outset.</p>
             </div>
           </div>
         </div>
@@ -136,18 +162,18 @@
   <!-- Case nav -->
   <nav class="cs-nav">
     <a href="operational-efficiency.html" class="cs-nav-item">
-      <span class="cs-nav-dir">← Previous</span>
-      <span class="cs-nav-title">Contact Us — Record CSAT Uplift</span>
+      <span class="cs-nav-dir">â† Previous</span>
+      <span class="cs-nav-title">Contact Us â€” Record CSAT Uplift</span>
     </a>
-    <a href="../index.html#work" class="cs-nav-item">
-      <span class="cs-nav-dir">↑ All work</span>
-      <span class="cs-nav-title">View all work</span>
+    <a href="ai-transformation.html" class="cs-nav-item">
+      <span class="cs-nav-dir">Next &rarr;</span>
+      <span class="cs-nav-title">AI Transformation for UX</span>
     </a>
   </nav>
 
   <footer class="footer">
     <div class="footer-inner">
-      <span>© 2025 Paul White · Oxfordshire, UK</span>
+      <span>Â© 2025 Paul White Â· Oxfordshire, UK</span>
       <span class="footer-tag">Designed with intention.</span>
     </div>
   </footer>
@@ -155,3 +181,6 @@
   <script src="../js/main.js"></script>
 </body>
 </html>
+
+
+
