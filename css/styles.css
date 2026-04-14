@@ -99,10 +99,10 @@ a { color: inherit; text-decoration: none; }
 .nav::before {
   content: "";
   position: absolute;
-  inset: 0 calc((100vw - var(--max)) / 2);
+  inset: 0 max(16px, calc((100vw - var(--max)) / 2 + 16px));
   background: var(--nav-blur);
   border: 1px solid var(--nav-border);
-  border-radius: 22px;
+  border-radius: 999px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.06),
     0 18px 44px rgba(0,0,0,0.18);
@@ -132,7 +132,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 40px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -157,8 +157,13 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   left: 0;
   top: 50%;
+  display: block;
   width: 40px;
   height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
@@ -174,8 +179,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 .nav-avatar img {
+  display: block;
   width: 100%;
   height: 100%;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   object-fit: cover;
   object-position: center top;
 }
@@ -1076,7 +1086,8 @@ body[data-theme="light"] .theme-toggle-icon-moon {
 
   .nav::before {
     inset: 0 16px;
-    border-radius: 18px;
+    border-radius: 28px;
+    transition: border-radius 0.32s var(--ease), background var(--t), opacity var(--t), box-shadow var(--t), border-color var(--t);
   }
 
   .nav::after {
