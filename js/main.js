@@ -207,6 +207,19 @@
     });
   }
 
+  function centerCaseCard(card) {
+    if (!card) {
+      return;
+    }
+
+    if (workList && workList.classList.contains('work-list--carousel')) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      return;
+    }
+
+    card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+  }
+
   function updateCarouselArrows() {
     if (!workList || !workArrowPrev || !workArrowNext) {
       return;
@@ -271,13 +284,26 @@
     }, { passive: true });
   }
 
+  caseCards.forEach(function (card) {
+    card.addEventListener('click', function (event) {
+      if (!card.classList.contains('is-active')) {
+        event.preventDefault();
+        centerCaseCard(card);
+      }
+    });
+  });
+
   function scrollCarousel(direction) {
     if (!workList || !workList.classList.contains('work-list--carousel')) {
       return;
     }
 
-    const delta = Math.max(320, Math.min(workList.clientWidth * 0.72, 720)) * direction;
-    workList.scrollBy({ left: delta, behavior: 'smooth' });
+    const activeCard = workList.querySelector('.case-card.is-active') || caseCards[0];
+    const currentIndex = caseCards.indexOf(activeCard);
+    const targetIndex = Math.max(0, Math.min(caseCards.length - 1, currentIndex + direction));
+    const targetCard = caseCards[targetIndex];
+
+    centerCaseCard(targetCard);
   }
 
   if (workArrowPrev) {
