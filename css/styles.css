@@ -132,7 +132,7 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 32px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -206,7 +206,7 @@ body[data-theme="light"] .nav-avatar {
 .nav-logo-text {
   position: relative;
   z-index: 1;
-  transform: translateX(calc(var(--nav-avatar-progress, 0) * 50px));
+  transform: translateX(calc(12px + (var(--nav-avatar-progress, 0) * 38px)));
   transition: transform 0.18s linear;
 }
 
@@ -497,7 +497,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
    Work
    ------------------------- */
 .work {
-  padding: 120px 0 0;
+  padding: 120px 0 40px;
   border-top: 1px solid var(--border);
 }
 
@@ -1113,7 +1113,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
       scale(calc(0.76 + (var(--nav-avatar-progress, 0) * 0.24)));
   }
   .nav-logo-text {
-    transform: translateX(calc(var(--nav-avatar-progress, 0) * 48px));
+    transform: translateX(calc(12px + (var(--nav-avatar-progress, 0) * 36px)));
   }
   .nav-actions { grid-area: actions; }
   .nav-links {
@@ -1195,7 +1195,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   .hero-photo { width: 180px; height: 180px; }
   .hero-title { font-size: clamp(44px, 12vw, 64px); }
 
-  .work { padding: 80px 0 0; }
+  .work { padding: 80px 0 24px; }
   .work-heading { padding: 0 20px; }
   .case-card {
     grid-template-columns: 88px minmax(0, 1fr);
@@ -1223,17 +1223,17 @@ body[data-theme="light"] .theme-toggle-icon-moon {
     margin-bottom: 40px;
   }
   .timeline::before {
-    left: 10px;
+    left: 18px;
   }
 
   .tl-item {
     grid-template-columns: 1fr;
     gap: 10px;
-    padding: 28px 20px 28px 34px;
+    padding: 28px 20px 28px 44px;
   }
 
   .tl-item::before {
-    left: 3px;
+    left: 11px;
     top: 30px;
     width: 14px;
     height: 14px;
