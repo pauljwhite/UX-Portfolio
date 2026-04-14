@@ -15,6 +15,12 @@
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  const WORK_VIEW_KEY = 'ux-portfolio-work-view';
+  const workList = document.querySelector('.work-list');
+  const workCarouselShell = document.querySelector('.work-carousel-shell');
+  const workArrowPrev = document.querySelector('.work-carousel-arrow--prev');
+  const workArrowNext = document.querySelector('.work-carousel-arrow--next');
+  const workViewButtons = Array.from(document.querySelectorAll('.work-view-btn'));
   let menuCloseTimer = null;
 
   function getPreferredTheme() {
@@ -127,19 +133,68 @@
      ------------------------- */
   const caseCards = Array.from(document.querySelectorAll('.case-card'));
 
-  function setActiveCaseCard() {
-    if (!caseCards.length) {
+  function getPreferredWorkView() {
+    const saved = window.localStorage.getItem(WORK_VIEW_KEY);
+    if (saved === 'list' || saved === 'carousel') {
+      return saved;
+    }
+    return 'carousel';
+  }
+
+  function applyWorkView(view, shouldCenterActiveCard) {
+    if (!workList) {
       return;
     }
 
+    const nextView = view === 'carousel' ? 'carousel' : 'list';
+    const isCarousel = nextView === 'carousel';
+    workList.classList.toggle('work-list--carousel', isCarousel);
+    if (workCarouselShell) {
+      workCarouselShell.classList.toggle('is-carousel', isCarousel);
+    }
+
+    workViewButtons.forEach(function (button) {
+      const isActive = button.getAttribute('data-work-view') === nextView;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    setActiveCaseCard();
+    updateCarouselArrows();
+
+    if (isCarousel && shouldCenterActiveCard) {
+      const activeCard = workList.querySelector('.case-card.is-active') || caseCards[0];
+      if (activeCard) {
+        activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }
+
+  function setActiveCaseCard() {
+    if (!caseCards.length || !workList) {
+      return;
+    }
+
+    const isCarousel = workList.classList.contains('work-list--carousel');
     const viewportCenter = window.innerHeight * 0.5;
+    const carouselCenter = (function () {
+      if (!isCarousel) {
+        return 0;
+      }
+      const rect = workList.getBoundingClientRect();
+      return rect.left + (rect.width / 2);
+    })();
+
     let activeCard = caseCards[0];
     let closestDistance = Number.POSITIVE_INFINITY;
 
     caseCards.forEach(function (card) {
       const rect = card.getBoundingClientRect();
-      const cardCenter = rect.top + (rect.height / 2);
-      const distance = Math.abs(cardCenter - viewportCenter);
+      const cardCenter = isCarousel
+        ? rect.left + (rect.width / 2)
+        : rect.top + (rect.height / 2);
+      const targetCenter = isCarousel ? carouselCenter : viewportCenter;
+      const distance = Math.abs(cardCenter - targetCenter);
 
       if (distance < closestDistance) {
         closestDistance = distance;
@@ -150,6 +205,27 @@
     caseCards.forEach(function (card) {
       card.classList.toggle('is-active', card === activeCard);
     });
+  }
+
+  function updateCarouselArrows() {
+    if (!workList || !workArrowPrev || !workArrowNext) {
+      return;
+    }
+
+    const isCarousel = workList.classList.contains('work-list--carousel');
+    if (!isCarousel) {
+      workArrowPrev.classList.add('is-disabled');
+      workArrowNext.classList.add('is-disabled');
+      return;
+    }
+
+    const maxScroll = Math.max(0, workList.scrollWidth - workList.clientWidth);
+    const left = workList.scrollLeft;
+    const nearStart = left <= 8;
+    const nearEnd = left >= (maxScroll - 8);
+
+    workArrowPrev.classList.toggle('is-disabled', nearStart || maxScroll <= 0);
+    workArrowNext.classList.toggle('is-disabled', nearEnd || maxScroll <= 0);
   }
 
   /* -------------------------
@@ -166,7 +242,9 @@
   updateProgress();
   updateNav();
   updateNavAvatar();
+  applyWorkView(getPreferredWorkView(), false);
   setActiveCaseCard();
+  updateCarouselArrows();
   window.addEventListener('resize', function () {
     setActiveCaseCard();
     updateNavAvatar();
@@ -183,6 +261,44 @@
       window.localStorage.setItem(STORAGE_KEY, nextTheme);
     });
   }
+
+  if (workList) {
+    workList.addEventListener('scroll', function () {
+      if (workList.classList.contains('work-list--carousel')) {
+        setActiveCaseCard();
+        updateCarouselArrows();
+      }
+    }, { passive: true });
+  }
+
+  function scrollCarousel(direction) {
+    if (!workList || !workList.classList.contains('work-list--carousel')) {
+      return;
+    }
+
+    const delta = Math.max(320, Math.min(workList.clientWidth * 0.72, 720)) * direction;
+    workList.scrollBy({ left: delta, behavior: 'smooth' });
+  }
+
+  if (workArrowPrev) {
+    workArrowPrev.addEventListener('click', function () {
+      scrollCarousel(-1);
+    });
+  }
+
+  if (workArrowNext) {
+    workArrowNext.addEventListener('click', function () {
+      scrollCarousel(1);
+    });
+  }
+
+  workViewButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      const view = button.getAttribute('data-work-view');
+      applyWorkView(view, true);
+      window.localStorage.setItem(WORK_VIEW_KEY, view);
+    });
+  });
 
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', function () {

@@ -104,8 +104,18 @@
   <section class="work" id="work">
     <div class="container">
       <h2 class="work-heading animate-in">Selected work</h2>
+      <div class="work-controls">
+        <div class="work-view-toggle" role="group" aria-label="Selected work view">
+          <button class="work-view-btn is-active" type="button" data-work-view="carousel" aria-pressed="true">Carousel</button>
+          <button class="work-view-btn" type="button" data-work-view="list" aria-pressed="false">List</button>
+        </div>
+      </div>
     </div>
-    <div class="work-list">
+    <div class="work-carousel-shell">
+      <button class="work-carousel-arrow work-carousel-arrow--prev" type="button" aria-label="Previous work item">
+        <span aria-hidden="true">←</span>
+      </button>
+      <div class="work-list">
 
       <a href="case-studies/ai-transformation.html" class="case-card animate-in" style="--delay: 0.05s">
         <div class="case-eyebrow">
@@ -219,6 +229,10 @@
         <span class="case-arrow">View case study</span>
       </a>
 
+      </div>
+      <button class="work-carousel-arrow work-carousel-arrow--next" type="button" aria-label="Next work item">
+        <span aria-hidden="true">→</span>
+      </button>
     </div>
   </section>
 
