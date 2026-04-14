@@ -594,26 +594,32 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   height: 430px;
 }
 
+.work-list.work-list--carousel.is-animating {
+  scroll-snap-type: none;
+}
+
 .work-list.work-list--carousel::-webkit-scrollbar {
   display: none;
 }
 
 .work-carousel-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 24px;
+  transform: none;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--nav-border);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-off) 78%, var(--bg));
+  background: var(--nav-blur);
   color: var(--text-1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
-    0 10px 20px rgba(0,0,0,0.22);
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 18px 44px rgba(0,0,0,0.18);
+  backdrop-filter: saturate(220%) blur(32px);
+  -webkit-backdrop-filter: saturate(220%) blur(32px);
   cursor: pointer;
   z-index: 3;
   opacity: 0;
@@ -626,14 +632,14 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   pointer-events: auto;
 }
 
-.work-carousel-arrow:hover {
-  transform: translateY(-50%) translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+.work-carousel-shell.is-carousel .work-carousel-arrow.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.work-carousel-arrow.is-disabled {
-  opacity: 0.52;
-  pointer-events: none;
+.work-carousel-arrow:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
 }
 
 .work-carousel-arrow span {
@@ -665,7 +671,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   border-top: 1px solid var(--border);
   text-align: left;
   background: transparent;
-  transition: background 0.45s var(--ease), padding 0.45s var(--ease), transform 0.45s var(--ease), opacity 0.45s var(--ease);
+  transition: background 0.7s var(--ease), padding 0.7s var(--ease), transform 0.7s var(--ease), opacity 0.7s var(--ease);
   position: relative;
   overflow: hidden;
   opacity: 0.72;
@@ -744,7 +750,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   opacity: 0;
   overflow: hidden;
   transform: translateY(-8px);
-  transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), transform 0.45s var(--ease), margin-top 0.45s var(--ease);
+  transition: max-height 0.72s var(--ease), opacity 0.5s var(--ease), transform 0.72s var(--ease), margin-top 0.72s var(--ease);
 }
 
 .case-card.is-active .case-eyebrow {
@@ -756,7 +762,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
 }
 
 .case-card.is-active .case-desc {
-  max-height: 10rem;
+  max-height: 18rem;
   opacity: 1;
   transform: translateY(0);
   margin-top: 16px;
@@ -774,7 +780,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   max-height: 105px;
   opacity: 1;
   transform: translateY(0) scale(1);
-  transition: max-width 0.5s var(--ease), max-height 0.5s var(--ease), opacity 0.35s var(--ease), transform 0.5s var(--ease), margin-top 0.45s var(--ease);
+  transition: max-width 0.78s var(--ease), max-height 0.78s var(--ease), opacity 0.5s var(--ease), transform 0.78s var(--ease), margin-top 0.72s var(--ease);
 }
 
 .case-thumb img {
@@ -809,7 +815,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   opacity: 0;
   overflow: hidden;
   transform: translateY(-8px);
-  transition: max-height 0.45s var(--ease), opacity 0.3s var(--ease), transform 0.45s var(--ease), margin-top 0.45s var(--ease), gap var(--t);
+  transition: max-height 0.72s var(--ease), opacity 0.5s var(--ease), transform 0.72s var(--ease), margin-top 0.72s var(--ease), gap var(--t);
 }
 
 .case-arrow::after {
@@ -832,11 +838,17 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   min-width: 520px;
   height: 100%;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 28px;
   padding: 28px 30px;
   background: color-mix(in srgb, var(--bg-off) 54%, transparent);
   scroll-snap-align: center;
   opacity: 0.64;
+}
+
+.work-list--carousel .case-card.animate-in,
+.work-list--carousel .case-card.animate-in.visible {
+  opacity: 1;
+  transform: none;
 }
 
 .work-list--carousel .case-card.is-active {
@@ -1392,28 +1404,38 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   .case-card.is-active .case-thumb { max-width: 176px; max-height: 132px; }
   .work-list.work-list--carousel {
     gap: 14px;
+    overflow-y: hidden;
     padding: 0 20px 10px;
-    height: 480px;
+    height: 540px;
   }
   .work-carousel-arrow {
-    width: 36px;
-    height: 36px;
+    top: auto;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
   }
-  .work-carousel-arrow--prev { left: 10px; }
-  .work-carousel-arrow--next { right: 10px; }
+  .work-carousel-arrow--prev { left: 24px; }
+  .work-carousel-arrow--next { right: 24px; }
   .work-list--carousel .case-card {
-    flex-basis: 88vw;
-    min-width: 88vw;
-    border-radius: 16px;
+    flex-basis: 84vw;
+    min-width: 84vw;
+    height: 100%;
+    align-items: center;
+    border-radius: 28px;
     padding: 20px 18px;
+    transition: background 0.45s var(--ease), border-color 0.45s var(--ease), opacity 0.45s var(--ease);
   }
   .work-list--carousel .case-card.is-active {
     grid-template-columns: 136px minmax(0, 1fr);
-    padding: 24px 18px;
+    padding: 20px 18px;
+  }
+  .work-list--carousel .case-card.is-active .case-arrow {
+    align-self: end;
   }
   .work-list--carousel .case-thumb {
     max-width: 88px;
     max-height: 66px;
+    transition: max-width 0.78s var(--ease), max-height 0.78s var(--ease), opacity 0.5s var(--ease), transform 0.78s var(--ease), margin-top 0.72s var(--ease);
   }
   .work-list--carousel .case-card.is-active .case-thumb {
     max-width: 136px;

@@ -21,6 +21,8 @@
   const workArrowPrev = document.querySelector('.work-carousel-arrow--prev');
   const workArrowNext = document.querySelector('.work-carousel-arrow--next');
   const workViewButtons = Array.from(document.querySelectorAll('.work-view-btn'));
+  let carouselScrollFrame = null;
+  let suppressCarouselActiveSync = false;
   let menuCloseTimer = null;
 
   function getPreferredTheme() {
@@ -207,13 +209,73 @@
     });
   }
 
-  function centerCaseCard(card) {
+  function animateCarouselScroll(targetLeft, duration, onApproachComplete, onComplete) {
+    if (!workList) {
+      return;
+    }
+
+    if (carouselScrollFrame) {
+      window.cancelAnimationFrame(carouselScrollFrame);
+      carouselScrollFrame = null;
+    }
+
+    workList.classList.add('is-animating');
+
+    const startLeft = workList.scrollLeft;
+    const maxScroll = Math.max(0, workList.scrollWidth - workList.clientWidth);
+    const clampedTarget = Math.max(0, Math.min(maxScroll, targetLeft));
+    const distance = clampedTarget - startLeft;
+
+    if (Math.abs(distance) < 1) {
+      workList.scrollLeft = clampedTarget;
+      workList.classList.remove('is-animating');
+      if (typeof onApproachComplete === 'function') {
+        onApproachComplete();
+      }
+      if (typeof onComplete === 'function') {
+        onComplete();
+      }
+      return;
+    }
+
+    const startTime = performance.now();
+    let approachCompleteCalled = false;
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      workList.scrollLeft = startLeft + (distance * eased);
+
+      if (!approachCompleteCalled && progress >= 0.45) {
+        approachCompleteCalled = true;
+        if (typeof onApproachComplete === 'function') {
+          onApproachComplete();
+        }
+      }
+
+      if (progress < 1) {
+        carouselScrollFrame = window.requestAnimationFrame(step);
+      } else {
+        carouselScrollFrame = null;
+        workList.classList.remove('is-animating');
+        if (typeof onComplete === 'function') {
+          onComplete();
+        }
+      }
+    }
+
+    carouselScrollFrame = window.requestAnimationFrame(step);
+  }
+
+  function centerCaseCard(card, duration, onApproachComplete, onComplete) {
     if (!card) {
       return;
     }
 
     if (workList && workList.classList.contains('work-list--carousel')) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const targetLeft = card.offsetLeft - ((workList.clientWidth - card.offsetWidth) / 2);
+      animateCarouselScroll(targetLeft, duration || 360, onApproachComplete, onComplete);
       return;
     }
 
@@ -227,8 +289,8 @@
 
     const isCarousel = workList.classList.contains('work-list--carousel');
     if (!isCarousel) {
-      workArrowPrev.classList.add('is-disabled');
-      workArrowNext.classList.add('is-disabled');
+      workArrowPrev.classList.add('is-hidden');
+      workArrowNext.classList.add('is-hidden');
       return;
     }
 
@@ -237,8 +299,8 @@
     const nearStart = left <= 8;
     const nearEnd = left >= (maxScroll - 8);
 
-    workArrowPrev.classList.toggle('is-disabled', nearStart || maxScroll <= 0);
-    workArrowNext.classList.toggle('is-disabled', nearEnd || maxScroll <= 0);
+    workArrowPrev.classList.toggle('is-hidden', nearStart || maxScroll <= 0);
+    workArrowNext.classList.toggle('is-hidden', nearEnd || maxScroll <= 0);
   }
 
   /* -------------------------
@@ -275,14 +337,16 @@
     });
   }
 
-  if (workList) {
-    workList.addEventListener('scroll', function () {
-      if (workList.classList.contains('work-list--carousel')) {
-        setActiveCaseCard();
-        updateCarouselArrows();
-      }
-    }, { passive: true });
-  }
+    if (workList) {
+      workList.addEventListener('scroll', function () {
+        if (workList.classList.contains('work-list--carousel')) {
+          if (!suppressCarouselActiveSync) {
+            setActiveCaseCard();
+          }
+          updateCarouselArrows();
+        }
+      }, { passive: true });
+    }
 
   caseCards.forEach(function (card) {
     card.addEventListener('click', function (event) {
@@ -303,7 +367,19 @@
     const targetIndex = Math.max(0, Math.min(caseCards.length - 1, currentIndex + direction));
     const targetCard = caseCards[targetIndex];
 
-    centerCaseCard(targetCard);
+    if (!targetCard || targetCard === activeCard) {
+      return;
+    }
+
+    suppressCarouselActiveSync = true;
+    centerCaseCard(targetCard, 900, function () {
+      suppressCarouselActiveSync = false;
+      setActiveCaseCard();
+      updateCarouselArrows();
+    }, function () {
+      suppressCarouselActiveSync = false;
+      updateCarouselArrows();
+    });
   }
 
   if (workArrowPrev) {
