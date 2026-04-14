@@ -9,8 +9,13 @@
   const STORAGE_KEY = 'ux-portfolio-theme';
   const docEl = document.documentElement;
   const body = document.body;
+  const nav = document.getElementById('nav');
+  const heroPhoto = document.querySelector('.hero-photo');
   const themeToggle = document.getElementById('themeToggle');
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
   const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  let menuCloseTimer = null;
 
   function getPreferredTheme() {
     const savedTheme = window.localStorage.getItem(STORAGE_KEY);
@@ -41,6 +46,37 @@
 
   applyTheme(getPreferredTheme());
 
+  function closeMenu(immediate) {
+    if (!nav || !menuToggle) {
+      return;
+    }
+
+    if (menuCloseTimer) {
+      window.clearTimeout(menuCloseTimer);
+      menuCloseTimer = null;
+    }
+
+    if (immediate) {
+      nav.classList.remove('is-open', 'is-closing');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
+      return;
+    }
+
+    if (!nav.classList.contains('is-open')) {
+      return;
+    }
+
+    nav.classList.add('is-closing');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation menu');
+
+    menuCloseTimer = window.setTimeout(function () {
+      nav.classList.remove('is-open', 'is-closing');
+      menuCloseTimer = null;
+    }, 380);
+  }
+
   /* -------------------------
      Scroll Progress Bar
      ------------------------- */
@@ -56,14 +92,33 @@
   /* -------------------------
      Nav — scroll state
      ------------------------- */
-  const nav = document.getElementById('nav');
-
   function updateNav() {
     if (window.scrollY > 24) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
     }
+  }
+
+  function updateNavAvatar() {
+    if (!nav) {
+      return;
+    }
+
+    if (!heroPhoto) {
+      nav.style.setProperty('--nav-avatar-progress', '1');
+      return;
+    }
+
+    const heroRect = heroPhoto.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
+    const start = navRect.bottom + 56;
+    const end = navRect.bottom - 48;
+    const progress = (start - heroRect.bottom) / (start - end);
+    const clamped = Math.max(0, Math.min(1, progress));
+
+    nav.style.setProperty('--nav-avatar-progress', clamped.toFixed(3));
+    heroPhoto.classList.toggle('is-transitioning', clamped > 0 && clamped < 1);
   }
 
   /* -------------------------
@@ -103,20 +158,48 @@
   window.addEventListener('scroll', function () {
     updateProgress();
     updateNav();
+    updateNavAvatar();
     setActiveCaseCard();
   }, { passive: true });
 
   // Run once on load
   updateProgress();
   updateNav();
+  updateNavAvatar();
   setActiveCaseCard();
-  window.addEventListener('resize', setActiveCaseCard);
+  window.addEventListener('resize', function () {
+    setActiveCaseCard();
+    updateNavAvatar();
+
+    if (window.innerWidth > 768 && nav) {
+      closeMenu(true);
+    }
+  });
 
   if (themeToggle) {
     themeToggle.addEventListener('click', function () {
       const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       applyTheme(nextTheme);
       window.localStorage.setItem(STORAGE_KEY, nextTheme);
+    });
+  }
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', function () {
+      if (nav.classList.contains('is-open') && !nav.classList.contains('is-closing')) {
+        closeMenu(false);
+        return;
+      }
+
+      if (menuCloseTimer) {
+        window.clearTimeout(menuCloseTimer);
+        menuCloseTimer = null;
+      }
+
+      nav.classList.remove('is-closing');
+      nav.classList.add('is-open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggle.setAttribute('aria-label', 'Close navigation menu');
     });
   }
 
@@ -157,6 +240,9 @@
       const target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
+      if (nav && nav.classList.contains('is-open') && navLinks && navLinks.contains(this)) {
+        closeMenu(true);
+      }
       const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 56;
       const top = target.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top: top, behavior: 'smooth' });

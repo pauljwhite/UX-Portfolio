@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Paul White â€” Senior UX Leader with 19 years designing and leading teams for SaaS in cybersecurity and financial services.">
-  <meta property="og:title" content="Paul White â€” Senior UX Leader">
+  <meta name="description" content="Paul White - Senior UX Leader with 19 years designing and leading teams for SaaS in cybersecurity and financial services.">
+  <meta property="og:title" content="Paul White - Senior UX Leader">
   <meta property="og:description" content="19 years designing and leading teams for enterprise SaaS in cybersecurity and financial services.">
   <meta name="theme-color" content="#ffffff">
-  <title>Paul White â€” Senior UX Leader</title>
+  <title>Paul White - Senior UX Leader</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
@@ -17,18 +17,22 @@
 
   <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Navigation -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Paul White</a>
-      <div class="nav-links">
+      <a href="#" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
-        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch &rarr;</a>
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
           <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
@@ -42,11 +46,15 @@
             </svg>
           </span>
         </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
@@ -67,7 +75,6 @@
     </div>
   </section>
 
-  <!-- About -->
   <section class="about" id="about">
     <div class="about-inner">
       <div class="about-text animate-in">
@@ -86,7 +93,7 @@
             <span>Sectors</span>
           </div>
           <div class="about-stat">
-            <strong>6</strong>
+            <strong>7</strong>
             <span>Case studies</span>
           </div>
         </div>
@@ -94,18 +101,33 @@
     </div>
   </section>
 
-  <!-- Work -->
   <section class="work" id="work">
     <div class="container">
       <h2 class="work-heading animate-in">Selected work</h2>
     </div>
     <div class="work-list">
 
-      <a href="case-studies/governance.html" class="case-card animate-in" style="--delay: 0.05s">
+      <a href="case-studies/ai-transformation.html" class="case-card animate-in" style="--delay: 0.05s">
         <div class="case-eyebrow">
           <span class="case-num">01</span>
           <span class="case-eyebrow-sep"></span>
-          <span class="case-category">UX Governance Â· Sophos</span>
+          <span class="case-category">AI Strategy · Sophos</span>
+        </div>
+        <div class="case-info">
+          <h3 class="case-title">AI Transformation for UX</h3>
+          <p class="case-desc">Leading the shift from isolated experimentation to a practical AI-enabled UX practice across ways of working, team capability, and product thinking.</p>
+        </div>
+        <div class="case-thumb">
+          <img src="images/case-07-ai-transformation.svg" alt="AI Transformation for UX">
+        </div>
+        <span class="case-arrow">View case study</span>
+      </a>
+
+      <a href="case-studies/governance.html" class="case-card animate-in" style="--delay: 0.07s">
+        <div class="case-eyebrow">
+          <span class="case-num">02</span>
+          <span class="case-eyebrow-sep"></span>
+          <span class="case-category">UX Governance · Sophos</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Design Governance &amp; Strategy</h3>
@@ -117,15 +139,15 @@
         <span class="case-arrow">View case study</span>
       </a>
 
-      <a href="case-studies/design-system.html" class="case-card animate-in" style="--delay: 0.07s">
+      <a href="case-studies/design-system.html" class="case-card animate-in" style="--delay: 0.09s">
         <div class="case-eyebrow">
-          <span class="case-num">02</span>
+          <span class="case-num">03</span>
           <span class="case-eyebrow-sep"></span>
-          <span class="case-category">Design Systems Â· Sophos</span>
+          <span class="case-category">Design Systems · Sophos</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Design System Development</h3>
-          <p class="case-desc">From third-party agency to fully in-house ownership â€” a unified design language across four product platforms.</p>
+          <p class="case-desc">From third-party agency to fully in-house ownership - a unified design language across four product platforms.</p>
         </div>
         <div class="case-thumb">
           <img src="images/case-02-design-system.png" alt="Design System Development">
@@ -133,15 +155,15 @@
         <span class="case-arrow">View case study</span>
       </a>
 
-      <a href="case-studies/custom-dashboards.html" class="case-card animate-in" style="--delay: 0.09s">
+      <a href="case-studies/custom-dashboards.html" class="case-card animate-in" style="--delay: 0.11s">
         <div class="case-eyebrow">
-          <span class="case-num">03</span>
+          <span class="case-num">04</span>
           <span class="case-eyebrow-sep"></span>
-          <span class="case-category">Personalisation Â· Sophos</span>
+          <span class="case-category">Personalisation · Sophos</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Customisable Experiences</h3>
-          <p class="case-desc">Replacing rigid legacy dashboards with a fully flexible canvas â€” users building their own views with relevant widgets.</p>
+          <p class="case-desc">Replacing rigid legacy dashboards with a fully flexible canvas - users building their own views with relevant widgets.</p>
         </div>
         <div class="case-thumb">
           <img src="images/case-03-custom-dashboards.png" alt="Customisable Experiences">
@@ -149,15 +171,15 @@
         <span class="case-arrow">View case study</span>
       </a>
 
-      <a href="case-studies/navigation.html" class="case-card animate-in" style="--delay: 0.11s">
+      <a href="case-studies/navigation.html" class="case-card animate-in" style="--delay: 0.13s">
         <div class="case-eyebrow">
-          <span class="case-num">04</span>
+          <span class="case-num">05</span>
           <span class="case-eyebrow-sep"></span>
           <span class="case-category">Information Architecture</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Navigation Transformation</h3>
-          <p class="case-desc">Two distinct nav redesigns â€” top-level mega nav at Sophos, and a site-wide MegaNav for Nationwide Building Society.</p>
+          <p class="case-desc">Two distinct nav redesigns - top-level mega nav at Sophos, and a site-wide MegaNav for Nationwide Building Society.</p>
         </div>
         <div class="case-thumb">
           <img src="images/case-04-navigation.png" alt="Navigation Transformation">
@@ -165,15 +187,15 @@
         <span class="case-arrow">View case study</span>
       </a>
 
-      <a href="case-studies/operational-efficiency.html" class="case-card animate-in" style="--delay: 0.13s">
+      <a href="case-studies/operational-efficiency.html" class="case-card animate-in" style="--delay: 0.15s">
         <div class="case-eyebrow">
-          <span class="case-num">05</span>
+          <span class="case-num">06</span>
           <span class="case-eyebrow-sep"></span>
-          <span class="case-category">Service Design Â· Nationwide</span>
+          <span class="case-category">Service Design · Nationwide</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Record CSAT Uplift</h3>
-          <p class="case-desc">A new Contact Us tool that delivered a 36% improvement in customer satisfaction â€” Nationwide's largest ever CSAT gain.</p>
+          <p class="case-desc">A new Contact Us tool that delivered a 36% improvement in customer satisfaction - Nationwide's largest ever CSAT gain.</p>
         </div>
         <div class="case-thumb">
           <img src="images/case-05-efficiency.png" alt="Record CSAT Uplift">
@@ -181,11 +203,11 @@
         <span class="case-arrow">View case study</span>
       </a>
 
-      <a href="case-studies/meaningful-data.html" class="case-card animate-in" style="--delay: 0.15s">
+      <a href="case-studies/meaningful-data.html" class="case-card animate-in" style="--delay: 0.17s">
         <div class="case-eyebrow">
-          <span class="case-num">06</span>
+          <span class="case-num">07</span>
           <span class="case-eyebrow-sep"></span>
-          <span class="case-category">Data Visualisation Â· Sophos</span>
+          <span class="case-category">Data Visualisation · Sophos</span>
         </div>
         <div class="case-info">
           <h3 class="case-title">Making Data Meaningful</h3>
@@ -200,7 +222,6 @@
     </div>
   </section>
 
-  <!-- Expertise -->
   <section class="expertise" id="expertise">
     <div class="container">
       <h2 class="expertise-heading animate-in">What I bring</h2>
@@ -237,7 +258,6 @@
     </div>
   </section>
 
-  <!-- Experience -->
   <section class="experience" id="experience">
     <div class="container">
       <h2 class="section-heading animate-in">Experience</h2>
@@ -252,7 +272,7 @@
               <h4 class="tl-role">Senior Manager, Global Platform UX &amp; Design</h4>
               <span class="tl-co">Sophos</span>
             </div>
-            <p class="tl-desc">Leading the global UX and design function for a major enterprise cybersecurity SaaS platform â€” setting strategic vision, managing cross-functional design teams, and driving design maturity at an organisational level.</p>
+            <p class="tl-desc">Leading the global UX and design function for a major enterprise cybersecurity SaaS platform - setting strategic vision, managing cross-functional design teams, and driving design maturity at an organisational level.</p>
           </div>
         </div>
 
@@ -278,7 +298,7 @@
               <h4 class="tl-role">Senior Experience Designer</h4>
               <span class="tl-co">Sophos</span>
             </div>
-            <p class="tl-desc">Led UX across multiple enterprise security products â€” rebuilt Intercept X for Mobile (doubling App Store ratings), created Sophos' first design system, and designed the Sophos Labs data intelligence suite.</p>
+            <p class="tl-desc">Led UX across multiple enterprise security products - rebuilt Intercept X for Mobile (doubling App Store ratings), created Sophos' first design system, and designed the Sophos Labs data intelligence suite.</p>
           </div>
         </div>
 
@@ -291,7 +311,7 @@
               <h4 class="tl-role">Senior Experience Designer</h4>
               <span class="tl-co">Nationwide Building Society</span>
             </div>
-            <p class="tl-desc">Delivered the site-wide MegaNav, a Contact Us tool (36% CSAT uplift â€” Nationwide's largest ever), the Apple Watch banking launch, and paid media landing pages with a 20% conversion uplift.</p>
+            <p class="tl-desc">Delivered the site-wide MegaNav, a Contact Us tool (36% CSAT uplift - Nationwide's largest ever), the Apple Watch banking launch, and paid media landing pages with a 20% conversion uplift.</p>
           </div>
         </div>
 
@@ -338,7 +358,6 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section class="contact" id="contact">
     <div class="contact-inner animate-in">
       <h2 class="contact-headline">Let's talk.</h2>
@@ -346,13 +365,12 @@
       <a href="mailto:paul_j_white@me.com" class="btn btn-dark btn-lg">paul_j_white@me.com</a>
       <div class="contact-social">
         <a href="https://linkedin.com/in/paul-white-ux/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-          <span class="linkedin-badge" aria-hidden="true">in</span>
+          LinkedIn
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <span>&copy; 2026 Paul White · Oxfordshire, UK</span>

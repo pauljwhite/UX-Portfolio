@@ -1,35 +1,61 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customisable Experiences — Paul White</title>
+  <meta name="theme-color" content="#ffffff">
+  <title>Customisable Experiences â€” Paul White</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/case-study.css">
 </head>
-<body>
+<body data-theme="dark" class="nav-avatar-static">
   <div class="progress-bar" id="progressBar"></div>
 
-  <nav class="nav" id="nav">
+    <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">Paul White</a>
-      <div class="nav-links">
-        <a href="../index.html#work">Work</a>
+            <a href="../index.html" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="../images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
         <a href="../index.html#experience">Experience</a>
         <a href="../index.html#contact">Contact</a>
       </div>
-      <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch ↗</a>
+      <div class="nav-actions">
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12H2.75M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23 5.46 5.46"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20.2 14.2A8.5 8.5 0 0 1 9.8 3.8a8.8 8.8 0 1 0 10.4 10.4Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
   <div class="cs-hero">
-    <a href="../index.html#work" class="cs-back">← Work</a>
-    <span class="cs-label">Case Study · 03 / 06</span>
+    <a href="../index.html#work" class="cs-back">â† Work</a>
+    <span class="cs-label">Case Study Â· 03 / 06</span>
     <h1 class="cs-title">Customisable Experiences</h1>
     <p class="cs-subtitle">Enabling user customisation</p>
     <div class="cs-meta">
@@ -63,7 +89,7 @@
       <div class="cs-two-col">
         <div class="cs-col-label"><h2>The Problem</h2></div>
         <div class="cs-col-content">
-          <p>Legacy dashboards in Sophos Central were static and inflexible, forcing all users into the same fixed view regardless of their role, priorities, or workflow — limiting the value they could derive from the platform.</p>
+          <p>Legacy dashboards in Sophos Central were static and inflexible, forcing all users into the same fixed view regardless of their role, priorities, or workflow â€” limiting the value they could derive from the platform.</p>
           <div class="cs-problems">
             <div class="cs-problem">
               <h4>Rigid Legacy Dashboards</h4>
@@ -93,16 +119,16 @@
           <p>Analysed how other platforms approach dashboard customisation, benchmarking best practices and identifying opportunities to differentiate our offering.</p>
 
           <h4>UX Best Practices</h4>
-          <p>Explored established UX principles for dashboard design — accessibility guidelines, visual hierarchy, and interaction patterns that support efficient customisation.</p>
+          <p>Explored established UX principles for dashboard design â€” accessibility guidelines, visual hierarchy, and interaction patterns that support efficient customisation.</p>
 
           <h4>Exploring Technical Capabilities</h4>
-          <p>Worked closely with engineering to assess the latest front-end technologies and frameworks. Landed on a hybrid approach — some features purchased via third-party integrations, some built in-house.</p>
+          <p>Worked closely with engineering to assess the latest front-end technologies and frameworks. Landed on a hybrid approach â€” some features purchased via third-party integrations, some built in-house.</p>
 
           <h4>Collaboration with Development</h4>
           <p>Close collaboration with engineering teams was essential in assessing technical feasibility of design concepts. We aligned research with development capabilities to ensure features could be implemented efficiently.</p>
 
           <h3>Design &amp; Iteration</h3>
-          <p>The project followed a Research → Ideation → Design → Test cycle. We launched an MVP first, gathered feedback from real users, and iterated across multiple phases. Key design decisions included drag-and-drop widget placement, resizable layouts, and role-aware visibility settings — enabling personalised views without requiring technical expertise.</p>
+          <p>The project followed a Research â†’ Ideation â†’ Design â†’ Test cycle. We launched an MVP first, gathered feedback from real users, and iterated across multiple phases. Key design decisions included drag-and-drop widget placement, resizable layouts, and role-aware visibility settings â€” enabling personalised views without requiring technical expertise.</p>
 
         </div>
       </div>
@@ -122,7 +148,7 @@
             </div>
             <div class="cs-result">
               <h4>Surfacing Insights Efficiently</h4>
-              <p>Users gained the ability to surface insights that mattered most to them — quickly and without unnecessary friction. Whether tracking threats, monitoring device status, or visualising licensing data, users could now create highly targeted dashboards that put critical insights front and centre. This reduced time-to-insight and empowered more informed, proactive decision-making.</p>
+              <p>Users gained the ability to surface insights that mattered most to them â€” quickly and without unnecessary friction. Whether tracking threats, monitoring device status, or visualising licensing data, users could now create highly targeted dashboards that put critical insights front and centre. This reduced time-to-insight and empowered more informed, proactive decision-making.</p>
             </div>
             <div class="cs-result">
               <h4>Stronger Collaboration Between Design, Development &amp; PM</h4>
@@ -130,7 +156,7 @@
             </div>
             <div class="cs-result">
               <h4>Scalable Foundation for Future Innovation</h4>
-              <p>The Customisable Canvas was designed as a strategic foundation for long-term growth. By building a modular, extensible framework, product and feature teams could contribute their own widgets and dashboards with minimal effort — accelerating the delivery of new value to users.</p>
+              <p>The Customisable Canvas was designed as a strategic foundation for long-term growth. By building a modular, extensible framework, product and feature teams could contribute their own widgets and dashboards with minimal effort â€” accelerating the delivery of new value to users.</p>
             </div>
           </div>
         </div>
@@ -141,18 +167,18 @@
   <!-- Case nav -->
   <nav class="cs-nav">
     <a href="design-system.html" class="cs-nav-item">
-      <span class="cs-nav-dir">← Previous</span>
+      <span class="cs-nav-dir">â† Previous</span>
       <span class="cs-nav-title">Design System Development</span>
     </a>
     <a href="navigation.html" class="cs-nav-item">
-      <span class="cs-nav-dir">Next →</span>
+      <span class="cs-nav-dir">Next â†’</span>
       <span class="cs-nav-title">Navigation Transformation</span>
     </a>
   </nav>
 
   <footer class="footer">
     <div class="footer-inner">
-      <span>© 2025 Paul White · Oxfordshire, UK</span>
+      <span>Â© 2025 Paul White Â· Oxfordshire, UK</span>
       <span class="footer-tag">Designed with intention.</span>
     </div>
   </footer>
@@ -160,3 +186,6 @@
   <script src="../js/main.js"></script>
 </body>
 </html>
+
+
+

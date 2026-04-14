@@ -1,40 +1,66 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design Governance &amp; Strategy — Paul White</title>
+  <meta name="theme-color" content="#ffffff">
+  <title>Design Governance &amp; Strategy â€” Paul White</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/case-study.css">
 </head>
-<body>
+<body data-theme="dark" class="nav-avatar-static">
   <div class="progress-bar" id="progressBar"></div>
 
-  <nav class="nav" id="nav">
+    <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">Paul White</a>
-      <div class="nav-links">
-        <a href="../index.html#work">Work</a>
+            <a href="../index.html" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="../images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
         <a href="../index.html#experience">Experience</a>
         <a href="../index.html#contact">Contact</a>
       </div>
-      <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch ↗</a>
+      <div class="nav-actions">
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12H2.75M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23 5.46 5.46"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20.2 14.2A8.5 8.5 0 0 1 9.8 3.8a8.8 8.8 0 1 0 10.4 10.4Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
   <div class="cs-hero">
-    <a href="../index.html#work" class="cs-back">← Work</a>
-    <span class="cs-label">Case Study · 01 / 06</span>
+    <a href="../index.html#work" class="cs-back">â† Work</a>
+    <span class="cs-label">Case Study Â· 01 / 06</span>
     <h1 class="cs-title">Design Governance &amp; Strategy</h1>
     <p class="cs-subtitle">Embedding the UX process</p>
     <div class="cs-meta">
       <div class="cs-meta-item"><span>Role</span><strong>Senior Manager, UX &amp; Design</strong></div>
-      <div class="cs-meta-item"><span>Team</span><strong>CPO, VP of Product, Senior Manager — UX &amp; Design</strong></div>
+      <div class="cs-meta-item"><span>Team</span><strong>CPO, VP of Product, Senior Manager â€” UX &amp; Design</strong></div>
       <div class="cs-meta-item"><span>Tools</span><strong>Figma, Miro, Airtable</strong></div>
       <div class="cs-meta-item"><span>Timeline</span><strong>1 Month</strong></div>
     </div>
@@ -125,7 +151,7 @@
           <p>Established regular review sessions to evaluate ongoing UX priorities. Gathered stakeholder feedback loops from designers, PMs, and engineers. Tracked key metrics to validate the framework's success and made data-driven adjustments iteratively.</p>
 
           <h3>Workload Tracking</h3>
-          <p>Built and introduced Gantt charts for tracking each designer's projects and commitments — improving workload distribution, enhancing project planning, and increasing transparency with stakeholders.</p>
+          <p>Built and introduced Gantt charts for tracking each designer's projects and commitments â€” improving workload distribution, enhancing project planning, and increasing transparency with stakeholders.</p>
 
         </div>
       </div>
@@ -165,14 +191,14 @@
   <nav class="cs-nav">
     <div class="cs-nav-item cs-nav-item--empty"></div>
     <a href="design-system.html" class="cs-nav-item">
-      <span class="cs-nav-dir">Next →</span>
+      <span class="cs-nav-dir">Next â†’</span>
       <span class="cs-nav-title">Design System Development</span>
     </a>
   </nav>
 
   <footer class="footer">
     <div class="footer-inner">
-      <span>© 2025 Paul White · Oxfordshire, UK</span>
+      <span>Â© 2025 Paul White Â· Oxfordshire, UK</span>
       <span class="footer-tag">Designed with intention.</span>
     </div>
   </footer>
@@ -180,3 +206,6 @@
   <script src="../js/main.js"></script>
 </body>
 </html>
+
+
+
