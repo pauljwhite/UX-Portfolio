@@ -6,6 +6,41 @@
 (function () {
   'use strict';
 
+  const STORAGE_KEY = 'ux-portfolio-theme';
+  const docEl = document.documentElement;
+  const body = document.body;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+  function getPreferredTheme() {
+    const savedTheme = window.localStorage.getItem(STORAGE_KEY);
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return savedTheme;
+    }
+
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function syncThemeUi(theme) {
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', theme === 'light' ? '#ffffff' : '#000000');
+    }
+
+    if (themeToggle) {
+      const nextTheme = theme === 'light' ? 'dark' : 'light';
+      themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+      themeToggle.setAttribute('aria-label', 'Switch to ' + nextTheme + ' mode');
+    }
+  }
+
+  function applyTheme(theme) {
+    body.setAttribute('data-theme', theme);
+    docEl.style.colorScheme = theme;
+    syncThemeUi(theme);
+  }
+
+  applyTheme(getPreferredTheme());
+
   /* -------------------------
      Scroll Progress Bar
      ------------------------- */
@@ -32,16 +67,58 @@
   }
 
   /* -------------------------
+     Selected work
+     Expand card nearest viewport center
+     ------------------------- */
+  const caseCards = Array.from(document.querySelectorAll('.case-card'));
+
+  function setActiveCaseCard() {
+    if (!caseCards.length) {
+      return;
+    }
+
+    const viewportCenter = window.innerHeight * 0.5;
+    let activeCard = caseCards[0];
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    caseCards.forEach(function (card) {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + (rect.height / 2);
+      const distance = Math.abs(cardCenter - viewportCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        activeCard = card;
+      }
+    });
+
+    caseCards.forEach(function (card) {
+      card.classList.toggle('is-active', card === activeCard);
+    });
+  }
+
+  /* -------------------------
      Scroll event (combined)
      ------------------------- */
   window.addEventListener('scroll', function () {
     updateProgress();
     updateNav();
+    setActiveCaseCard();
   }, { passive: true });
 
   // Run once on load
   updateProgress();
   updateNav();
+  setActiveCaseCard();
+  window.addEventListener('resize', setActiveCaseCard);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      window.localStorage.setItem(STORAGE_KEY, nextTheme);
+    });
+  }
 
   /* -------------------------
      Intersection Observer
@@ -90,17 +167,4 @@
      Case card hover — subtle
      lift on metrics
      ------------------------- */
-  document.querySelectorAll('.case-card').forEach(function (card) {
-    card.addEventListener('mouseenter', function () {
-      this.querySelectorAll('.metric-val').forEach(function (v) {
-        v.style.color = 'var(--accent)';
-      });
-    });
-    card.addEventListener('mouseleave', function () {
-      this.querySelectorAll('.metric-val').forEach(function (v) {
-        v.style.color = '';
-      });
-    });
-  });
-
 })();
