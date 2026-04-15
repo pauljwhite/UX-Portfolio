@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Page Composer &mdash; Paul White</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body data-theme="dark" class="nav-avatar-static">
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="../images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12H2.75M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23 5.46 5.46"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20.2 14.2A8.5 8.5 0 0 1 9.8 3.8a8.8 8.8 0 1 0 10.4 10.4Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="cs-hero">
+    <a href="../index.html#work" class="cs-back">&larr; Work</a>
+    <span class="cs-label">Case Study &middot; 02 / 08</span>
+    <h1 class="cs-title">Page Composer</h1>
+    <p class="cs-subtitle">Designing without starting from scratch &mdash; a composable UI builder for Sophos Central.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item"><span>Role</span><strong>Senior Manager, Global Platform UX &amp; Design</strong></div>
+      <div class="cs-meta-item"><span>Focus</span><strong>Internal tooling, UX scalability, design system adoption</strong></div>
+      <div class="cs-meta-item"><span>Tools</span><strong>Figma Make, Sophos Design System</strong></div>
+      <div class="cs-meta-item"><span>Timeline</span><strong>2024 &ndash; Ongoing</strong></div>
+    </div>
+  </div>
+
+  <!-- Cover image -->
+  <div class="cs-cover">
+    <img src="../images/case-07-ai-transformation.svg" alt="Page Composer">
+  </div>
+
+  <!-- Overview -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Overview</h2></div>
+        <div class="cs-col-content">
+          <p>Page Composer is an internal tool built using Figma Make that redefines how product teams at Sophos design and prototype UI. Rather than opening a blank frame and building screens from scratch, teams start with the real structure of a Sophos Central page and assemble it from pre-designed, system-compliant components.</p>
+          <p>The tool covers the full range of UI production: composing pages from layout blocks and widgets, building drawer and modal interactions, and linking screens into end-to-end mockable journeys. Everything it produces is aligned to the design system by default.</p>
+          <p>Page Composer shifts the act of design from creation to composition. It removes the friction that was slowing down teams and eating up UX capacity on work that did not require invention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Problem</h2></div>
+        <div class="cs-col-content">
+          <p>Sophos Central is a mature, complex platform. The design system is well established and the component library covers most of what any given feature needs. Yet teams were still spending most of their design time starting from a blank canvas.</p>
+          <div class="cs-problems">
+            <div class="cs-problem">
+              <h4>Reinventing the Same Screens</h4>
+              <p>Designers repeatedly rebuilt familiar layouts from scratch &mdash; list pages, dashboards, detail drawers &mdash; wasting time on structure that had already been solved elsewhere in the product.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>Inconsistent Design System Use</h4>
+              <p>Without a guided starting point, components were applied inconsistently. Different teams interpreted the design system differently, and drift compounded over time.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>Slow Prototyping on Complex Flows</h4>
+              <p>XDR investigation workflows, security dashboards, and multi-step configurations required prototypes that were expensive to produce. High fidelity took too long; low fidelity failed to communicate intent.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>UX as the Only Route to UI</h4>
+              <p>Any UI work, regardless of complexity, had to flow through the UX team. PMs who needed a quick layout to communicate an idea had no way to produce one themselves without creating work for a designer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Insight -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Insight</h2></div>
+        <div class="cs-col-content">
+          <p>The more I looked at how design time was being spent, the clearer it became: most of the effort was going into assembly work, not design thinking. The components existed. The patterns existed. The layouts existed. What was missing was a way to combine them quickly.</p>
+          <p>In a platform as mature as Sophos Central, the design problem is rarely &ldquo;what should this look like?&rdquo; It is almost always &ldquo;which existing patterns apply here, and how do they fit together?&rdquo; That is a composition problem, not an invention problem.</p>
+          <p>Teams did not need more components. They needed a structured, guided way to use the ones they already had &mdash; a layer between intent and implementation that removed the blank-canvas penalty.</p>
+          <p>Page Composer was designed to be that layer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Solution -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Solution</h2></div>
+        <div class="cs-col-content">
+          <h3>A Canvas That Reflects Real Product Structure</h3>
+          <p>Page Composer presents a canvas that mirrors the actual structure of a Sophos Central page: chrome, navigation, content area, and header already in place. You are not designing a product page &mdash; you are working within one from the first moment.</p>
+
+          <h3>Components as the Primary Ingredient</h3>
+          <p>Pre-built, system-compliant components are the building blocks. Designers and PMs can drag them into the canvas without worrying about whether they are using the right version, the right spacing, or the right token. The system handles that by default.</p>
+
+          <h3>Interactions, Not Just Screens</h3>
+          <p>Page Composer is not a wireframing tool. Teams can add drawers, flyouts, and modals to any component on the canvas, creating interactions that reflect real product behaviour rather than static representations of it. A table row can open a detail drawer. A button can trigger a confirmation modal. The prototype behaves like the product.</p>
+
+          <h3>End-to-End Journey Mocking</h3>
+          <p>Individual pages can be connected into full user flows. This means a PM or designer can mock a complete investigation journey in XDR, or a full onboarding sequence, without switching tools or rebuilding context. The output is a walkable, shareable prototype, not a deck of screenshots.</p>
+
+          <h3>A Bridge, Not a Shortcut</h3>
+          <p>Page Composer is positioned as a bridge between design intent and product reality. It does not replace UX thinking &mdash; it removes the production overhead that was preventing that thinking from happening quickly enough.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Capabilities -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Key Capabilities</h2></div>
+        <div class="cs-col-content">
+          <div class="cs-tiers">
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 01</div>
+              <h4>Composable Pages</h4>
+              <p>Build full pages using real Sophos Central layout structures, starting from a live product frame rather than a blank canvas.</p>
+            </div>
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 02</div>
+              <h4>Custom Widgets</h4>
+              <p>Extend standard layouts with configurable widgets while staying within design system rules. Flexibility without drift.</p>
+            </div>
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 03</div>
+              <h4>Drawers &amp; Modals</h4>
+              <p>Add real interactions to any element on the canvas. Drawers, flyouts, and modals behave as they would in the live product.</p>
+            </div>
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 04</div>
+              <h4>Journey Mocking</h4>
+              <p>Link pages and interactions into end-to-end flows, so teams can walk through realistic journeys rather than scroll through static screens.</p>
+            </div>
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 05</div>
+              <h4>System Alignment by Default</h4>
+              <p>Every output is anchored to the design system. Correct components, correct tokens, correct spacing &mdash; without requiring designers to police it manually.</p>
+            </div>
+            <div class="cs-tier">
+              <div class="cs-tier-label">Capability 06</div>
+              <h4>Shared Starting Points</h4>
+              <p>Common page templates accelerate recurring work. Designers and PMs start from an established baseline, not a blank frame.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow Transformation -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Workflow Transformation</h2></div>
+        <div class="cs-col-content">
+          <p>The most important measure of Page Composer is not what it does &mdash; it is what changes when teams use it. The shift in how UI work gets done is significant.</p>
+
+          <h3>Before Page Composer</h3>
+          <h4>Start from a blank Figma frame</h4>
+          <p>Every piece of work began from nothing. Layout, chrome, spacing, and structure all had to be built manually before any meaningful design decision could be made.</p>
+          <h4>Manually recreate familiar patterns</h4>
+          <p>List pages, data tables, and detail panels were rebuilt from scratch by each designer, with each iteration introducing small variations that accumulated into inconsistency.</p>
+          <h4>UX owns all UI creation</h4>
+          <p>Every UI artefact, regardless of complexity, had to be produced by a designer. PMs had no way to contribute directly, and the bottleneck was structural.</p>
+          <h4>Static mockups that miss the interaction</h4>
+          <p>Prototypes were collections of screens. Stakeholders and researchers had to imagine the connective tissue between them, which made feedback less specific and testing less realistic.</p>
+
+          <h3>After Page Composer</h3>
+          <h4>Start inside a real product frame</h4>
+          <p>Work begins in the correct context immediately. Layout, navigation, and chrome are already in place. Teams move straight to structure and content decisions.</p>
+          <h4>Assemble from approved components</h4>
+          <p>Designers and PMs select from a library of real, system-compliant components. Consistency is built in, not reviewed in later.</p>
+          <h4>PMs and designers both contribute</h4>
+          <p>Low-complexity UI creation no longer requires a designer. PMs can assemble straightforward layouts independently, with UX retaining sign-off on quality and complexity.</p>
+          <h4>Interactive journeys, not screen collections</h4>
+          <p>Outputs include real drawer and modal interactions linked across flows. Research sessions are faster to set up and produce more reliable findings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Role in AI Transformation -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>AI Context</h2></div>
+        <div class="cs-col-content">
+          <p>Page Composer was built as part of the broader AI transformation of UX at Sophos. It plays a specific role in that story: it provides the structured, system-based foundation that makes AI-generated UI reliable.</p>
+          <p>When AI tools generate layouts or components, Page Composer gives them a correct frame to work within. Outputs are anchored to real product structure and real system components, which closes the gap between AI generation and production-ready UI. The two capabilities reinforce each other: AI generates faster, and Page Composer ensures what is generated stays true to the system.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Impact</h2></div>
+        <div class="cs-col-content">
+          <div class="cs-results">
+            <div class="cs-result">
+              <h4>Faster Page Creation and Iteration</h4>
+              <p>Removing the blank-canvas penalty has materially reduced the time from brief to reviewable UI. Teams iterate more quickly because starting is no longer the hard part.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Stronger Design System Adoption</h4>
+              <p>When the correct components are the default starting point rather than a lookup exercise, adoption improves naturally. Drift decreases without requiring governance overhead to manage it.</p>
+            </div>
+            <div class="cs-result">
+              <h4>UX Capacity Redirected to Higher-Value Work</h4>
+              <p>With low-complexity UI work more widely distributed, UX time has shifted toward harder problems &mdash; complex workflows, system architecture, and user research &mdash; where designer judgement creates the most value.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Higher-Fidelity Prototypes for Research</h4>
+              <p>Interactive journeys are faster to build and closer to the real product. Research sessions produce more specific feedback, and design decisions are validated against realistic behaviour rather than abstract screens.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Cross-Functional Contribution to UI</h4>
+              <p>PMs can now produce meaningful UI artefacts without depending on a designer for every step. Collaboration has improved, and the pace of the overall product process has increased as a result.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Vision -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Future Vision</h2></div>
+        <div class="cs-col-content">
+          <p>The direction Page Composer points toward is one where designing from scratch becomes the exception rather than the default. For a mature platform like Sophos Central, most of the hard structural problems have been solved. The work of design should be about applying that knowledge quickly and well, not about re-solving it every time a new feature lands.</p>
+          <p>As the tool matures, the ambition is to push further toward a model where UI is assembled, not authored &mdash; where product teams of all kinds can move from problem statement to testable prototype in a fraction of the time it takes today, without compromising quality or consistency.</p>
+          <p>In that model, UX does not disappear. It moves upstream, into the architecture of the system itself: defining the components, curating the patterns, and setting the standard that everything else is built against. Page Composer is one practical step toward making that shift real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case nav -->
+  <nav class="cs-nav">
+    <a href="ai-transformation.html" class="cs-nav-item">
+      <span class="cs-nav-dir">&larr; Previous</span>
+      <span class="cs-nav-title">AI Transformation for UX</span>
+    </a>
+    <a href="governance.html" class="cs-nav-item">
+      <span class="cs-nav-dir">Next &rarr;</span>
+      <span class="cs-nav-title">Design Governance &amp; Strategy</span>
+    </a>
+  </nav>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 Paul White &middot; Oxfordshire, UK</span>
+      <span class="footer-tag">Designed with intention.</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
