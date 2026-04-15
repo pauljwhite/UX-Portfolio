@@ -144,6 +144,14 @@
   transform: translateY(175px);
 }
 
+.cs-cover--navigation img {
+  transform: translateY(50px);
+}
+
+.cs-cover--efficiency img {
+  transform: translateY(calc(6% + 48px));
+}
+
 /* -------------------------
    Case Study Sections
    ------------------------- */
@@ -644,14 +652,46 @@
   .cs-cover--full-image {
     height: min(68vw, 440px);
   }
+  .cs-cover--navigation {
+    height: auto;
+    min-height: 0;
+  }
+  .cs-cover--efficiency {
+    height: auto;
+    min-height: 0;
+    padding-top: 24px;
+  }
+  .cs-cover--dashboards {
+    height: auto;
+    min-height: 0;
+    padding-top: 0;
+  }
+  .cs-cover--navigation img {
+    width: calc(100% - 24px);
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+    align-self: flex-start;
+    transform: translateY(0);
+  }
+  .cs-cover--efficiency img {
+    width: calc(100% - 24px);
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+    align-self: flex-start;
+    transform: translateY(0);
+  }
   .cs-cover--dashboards img {
     width: calc(100% - 40px);
     height: auto;
-    max-height: 118%;
+    max-height: none;
     object-fit: contain;
-    object-position: center bottom;
-    align-self: flex-end;
-    transform: translateY(175px);
+    object-position: center top;
+    align-self: flex-start;
+    transform: translateY(10%);
   }
   .cs-cover img { width: calc(100% - 40px); }
   .cs-cover--full-image img {
@@ -676,10 +716,10 @@
   .cs-col-content h3 { gap: 12px; font-size: 20px; }
   .cs-col-content h3::before { width: 28px; height: 28px; flex-basis: 28px; font-size: 11px; }
   .cs-col-content h4 { font-size: 16px; }
-  .cs-nav { grid-template-columns: 1fr; }
+  .cs-nav { grid-template-columns: 1fr 1fr; }
   .cs-img-grid { grid-template-columns: 1fr; gap: 16px; }
-  .cs-nav-item:first-child { border-right: none; border-bottom: 1px solid var(--border-lt); }
-  .cs-nav-item:last-child .cs-nav-dir,
-  .cs-nav-item:last-child .cs-nav-title { text-align: left; }
+  .cs-nav-item { padding: 28px 20px; gap: 6px; }
+  .cs-nav-item:first-child { border-right: 1px solid var(--border-lt); border-bottom: none; }
+  .cs-nav-title { font-size: 15px; }
   .cs-coming-soon { padding: 80px 20px; }
 }
