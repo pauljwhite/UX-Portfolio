@@ -451,6 +451,19 @@
   letter-spacing: -0.01em;
 }
 
+.cs-video {
+  margin: 48px 0 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-off);
+}
+
+.cs-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Tier cards */
 .cs-tiers {
   display: grid;
