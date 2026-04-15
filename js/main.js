@@ -1,5 +1,5 @@
 /* ============================================================
-   Paul White — UX Portfolio
+   Paul White - UX Portfolio
    Interactions & Animations
    ============================================================ */
 
@@ -98,7 +98,7 @@
   }
 
   /* -------------------------
-     Nav — scroll state
+     Nav - scroll state
      ------------------------- */
   function updateNav() {
     if (window.scrollY > 24) {
@@ -421,6 +421,91 @@
     });
   }
 
+  const caseStudyImageCards = Array.from(document.querySelectorAll('.cs-img'));
+  let lightbox = null;
+  let lightboxImage = null;
+
+  function ensureLightbox() {
+    if (lightbox) {
+      return;
+    }
+
+    lightbox = document.createElement('div');
+    lightbox.className = 'cs-lightbox';
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'cs-lightbox-close';
+    closeButton.type = 'button';
+    closeButton.setAttribute('aria-label', 'Close image');
+    closeButton.textContent = '×';
+
+    lightboxImage = document.createElement('img');
+    lightboxImage.alt = '';
+
+    lightbox.appendChild(closeButton);
+    lightbox.appendChild(lightboxImage);
+    document.body.appendChild(lightbox);
+
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+  }
+
+  function openLightbox(image) {
+    if (!image) {
+      return;
+    }
+
+    ensureLightbox();
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt || '';
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox) {
+      return;
+    }
+
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  caseStudyImageCards.forEach(function (card) {
+    const image = card.querySelector('img');
+    if (!image) {
+      return;
+    }
+
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', image.alt ? 'Open image: ' + image.alt : 'Open image');
+
+    card.addEventListener('click', function () {
+      openLightbox(image);
+    });
+
+    card.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(image);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+
   /* -------------------------
      Intersection Observer
      Fade-in on scroll
@@ -468,7 +553,7 @@
   });
 
   /* -------------------------
-     Case card hover — subtle
+     Case card hover - subtle
      lift on metrics
      ------------------------- */
 })();
