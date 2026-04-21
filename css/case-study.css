@@ -134,6 +134,24 @@
   height: min(56vw, 600px);
 }
 
+.cs-cover--page-composer {
+  height: min(62vw, 760px);
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 40px;
+  align-items: center;
+}
+
+.cs-cover--page-composer img {
+  width: min(92vw, 1400px);
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center top;
+  transform: translateY(10%);
+}
+
 .cs-cover--dashboards img {
   width: min(100%, var(--max));
   height: auto;
@@ -679,6 +697,21 @@
     min-height: 0;
     padding-top: 0;
   }
+  .cs-cover--page-composer {
+    height: min(68vw, 520px);
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 12px;
+  }
+  .cs-cover--page-composer img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+    transform: translateY(10%);
+  }
   .cs-cover--navigation img {
     width: calc(100% - 24px);
     height: auto;
@@ -715,6 +748,15 @@
     object-fit: contain;
     align-self: flex-end;
     transform: translateY(6%);
+  }
+  .cs-cover--page-composer img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: center top;
+    align-self: center;
+    transform: translateY(10%);
   }
   .cs-process-flow { grid-template-columns: 1fr; gap: 18px; }
   .cs-process-step::after { content: none !important; }
