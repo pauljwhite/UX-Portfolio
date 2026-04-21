@@ -790,6 +790,37 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   transition: transform 0.7s var(--ease);
 }
 
+.case-thumb.case-thumb--page-composer {
+  display: block;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  aspect-ratio: auto;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  box-sizing: border-box;
+}
+
+.case-card.is-active .case-thumb.case-thumb--page-composer {
+  background: transparent;
+  border-color: transparent;
+  height: auto;
+  max-height: none;
+}
+
+.work-list--carousel .case-thumb.case-thumb--page-composer {
+  width: 120px;
+  height: auto;
+  max-height: none;
+}
+
+.work-list--carousel .case-card.is-active .case-thumb.case-thumb--page-composer {
+  width: 220px;
+  height: auto;
+  max-height: none;
+}
+
 .case-card.is-active .case-thumb {
   max-width: 280px;
   max-height: 210px;
@@ -1441,7 +1472,6 @@ body[data-theme="light"] .theme-toggle-icon-moon {
     max-width: 136px;
     max-height: 102px;
   }
-
   .about { padding: 80px 20px; }
   .about-stats { flex-wrap: wrap; gap: 32px; }
   .about-stat strong { font-size: 32px; }
