@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Design System Compliance Scanner | Paul White</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body data-theme="dark" class="nav-avatar-static">
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        <span class="nav-avatar" aria-hidden="true">
+          <img src="../images/paul-photo.png" alt="">
+        </span>
+        <span class="nav-logo-text">Paul White</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="mailto:paul_j_white@me.com" class="nav-cta">Get in touch</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+          <span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <path d="M12 2.75v2.5M12 18.75v2.5M21.25 12h-2.5M5.25 12H2.75M18.54 5.46l-1.77 1.77M7.23 16.77l-1.77 1.77M18.54 18.54l-1.77-1.77M7.23 7.23 5.46 5.46"></path>
+            </svg>
+          </span>
+          <span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M20.2 14.2A8.5 8.5 0 0 1 9.8 3.8a8.8 8.8 0 1 0 10.4 10.4Z"></path>
+            </svg>
+          </span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="cs-hero">
+    <a href="../index.html#work" class="cs-back">&larr; Work</a>
+    <span class="cs-label">Case Study &middot; 03 / 09</span>
+    <h1 class="cs-title">Design System Compliance Scanner</h1>
+    <p class="cs-subtitle">A Chrome extension that scans live and development builds of Sophos Central, cross-checks UI implementation against the frontend repository, and scores compliance with Luna, the Sophos design system.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item"><span>Role</span><strong>Senior Manager, Global Platform UX &amp; Design</strong></div>
+      <div class="cs-meta-item"><span>Focus</span><strong>Design governance, component compliance, UI quality automation</strong></div>
+      <div class="cs-meta-item"><span>Tools</span><strong>Cursor, Chrome Extension APIs, Sophos Central frontend repo</strong></div>
+      <div class="cs-meta-item"><span>Timeline</span><strong>2026</strong></div>
+    </div>
+  </div>
+
+  <!-- Cover image -->
+  <div class="cs-cover cs-cover--luna">
+    <img src="../images/luna-scanner-hero.png" alt="Design System Compliance Scanner showing detected UI compliance issues in Sophos Central">
+  </div>
+
+  <!-- Overview -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Overview</h2></div>
+        <div class="cs-col-content">
+          <p>Design System Compliance Scanner is a Chrome extension I built in Cursor to close the gap between design-system intent and what actually ships in Sophos Central. Luna is the Sophos design system, and the scanner inspects a live page or development build to check whether the rendered UI is using Luna components and approved implementation patterns.</p>
+          <p>It identifies the UI elements being rendered, cross-checks that implementation against the frontend UI repository, and produces a compliance score for both design quality and component usage. It highlights non-Luna or non-compliant elements directly on the page, then provides evidence in the extension panel so teams can understand what is wrong, where it appears, and which Luna pattern should be used instead.</p>
+          <p>The aim is not to create another governance checklist. It is to make compliance visible at the point of build, where engineers, designers, and PMs can act on it before drift becomes expensive to unwind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Problem</h2></div>
+        <div class="cs-col-content">
+          <p>Large enterprise products accumulate UI drift quietly. A native button replaces a Luna design-system button. A custom control behaves almost like the approved component. A page inherits older Material UI patterns that were never fully migrated. Each individual decision can look small, but together they weaken consistency, accessibility, maintainability, and customer trust.</p>
+          <p>Manual review was not enough. Designers could spot issues in screenshots or design reviews, but they could not continuously inspect every live or in-progress page. Engineers could search the repo, but visual and DOM-level drift was harder to connect back to the component system. We needed a way to inspect the product itself and link visible UI back to implementation evidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Approach -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>The Approach</h2></div>
+        <div class="cs-col-content">
+          <div class="cs-luna-approach">
+            <figure class="cs-img cs-img--luna-injection" tabindex="0">
+              <img src="../images/luna-scanner-injection.png" alt="Design System Compliance Scanner computing compliance scores after injecting checks into the page">
+              <figcaption class="cs-img-caption">Injected checks traverse the page, parse UI structures, and compute compliance scores from the rendered interface.</figcaption>
+            </figure>
+
+            <div class="cs-process-flow cs-process-flow--luna">
+              <div class="cs-process-step">
+                <div class="cs-process-head">
+                  <span class="cs-process-label">01</span>
+                  <h4>Inject checks into the page</h4>
+                </div>
+                <p>The extension injects traversal hooks into the current page so it can inspect rendered DOM, shadow roots, form controls, dialog structures, inline styles, and component markers in context.</p>
+              </div>
+              <div class="cs-process-step">
+                <div class="cs-process-head">
+                  <span class="cs-process-label">02</span>
+                  <h4>Cross-check implementation</h4>
+                </div>
+                <p>Detected elements are matched against the Luna component registry and known frontend implementation patterns, separating approved design-system usage from native, custom, or legacy UI.</p>
+              </div>
+              <div class="cs-process-step">
+                <div class="cs-process-head">
+                  <span class="cs-process-label">03</span>
+                  <h4>Score compliance</h4>
+                </div>
+                <p>The scanner calculates design and component compliance scores, grouping findings by severity so teams can focus on the issues that create the most product risk.</p>
+              </div>
+              <div class="cs-process-step">
+                <div class="cs-process-head">
+                  <span class="cs-process-label">04</span>
+                  <h4>Make evidence actionable</h4>
+                </div>
+                <p>Issues are highlighted directly on the page and documented in the panel with DOM context, source hints, and plain-language guidance on what needs to change.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What It Checks -->
+  <section class="cs-section cs-section--alt">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>What It Checks</h2></div>
+        <div class="cs-col-content">
+          <h3>Component Compliance</h3>
+          <p>The scanner identifies where approved Luna components are being used, where native controls have slipped in, and where custom patterns recreate functionality that already exists in the Sophos design system.</p>
+
+          <h3>Design-System Drift</h3>
+          <p>The extension looks for styling and structural signals that indicate divergence from the design system: inline style overrides, inconsistent control patterns, non-standard dialogs, and elements that are visually close but not system-compliant.</p>
+
+          <h3>Repository Alignment</h3>
+          <p>Findings are cross-referenced with frontend UI repository patterns so the tool is not just inspecting pixels. It connects what appears in the browser to the implementation model teams are expected to use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="cs-section">
+    <div class="cs-container">
+      <div class="cs-two-col">
+        <div class="cs-col-label"><h2>Impact</h2></div>
+        <div class="cs-col-content">
+          <div class="cs-results">
+            <div class="cs-result">
+              <h4>Faster Governance Feedback</h4>
+              <p>Teams can identify compliance issues directly in the browser without waiting for a design review or manual audit.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Clearer Engineering Action</h4>
+              <p>Each finding gives engineers a concrete location and component-level recommendation, making design-system fixes easier to prioritise and implement.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Measurable UI Quality</h4>
+              <p>Compliance becomes a score teams can track over time rather than a subjective judgement made late in delivery.</p>
+            </div>
+            <div class="cs-result">
+              <h4>Stronger System Adoption</h4>
+              <p>The tool reinforces Luna usage at the point where UI is built, reducing drift and helping the Sophos design system scale across a large product surface.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case nav -->
+  <nav class="cs-nav">
+    <a href="page-composer.html" class="cs-nav-item">
+      <span class="cs-nav-dir">&larr; Previous</span>
+      <span class="cs-nav-title">Page Composer</span>
+    </a>
+    <a href="governance.html" class="cs-nav-item">
+      <span class="cs-nav-dir">Next &rarr;</span>
+      <span class="cs-nav-title">Design Governance &amp; Strategy</span>
+    </a>
+  </nav>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 Paul White &middot; Oxfordshire, UK</span>
+      <span class="footer-tag">Designed with intention.</span>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
