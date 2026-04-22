@@ -21,6 +21,7 @@
   const workArrowPrev = document.querySelector('.work-carousel-arrow--prev');
   const workArrowNext = document.querySelector('.work-carousel-arrow--next');
   const workViewButtons = Array.from(document.querySelectorAll('.work-view-btn'));
+  const caseStudyCount = document.querySelector('[data-case-study-count]');
   let carouselScrollFrame = null;
   let suppressCarouselActiveSync = false;
   let menuCloseTimer = null;
@@ -134,6 +135,10 @@
      Expand card nearest viewport center
      ------------------------- */
   const caseCards = Array.from(document.querySelectorAll('.case-card'));
+
+  if (caseStudyCount && caseCards.length) {
+    caseStudyCount.textContent = String(caseCards.length);
+  }
 
   function getPreferredWorkView() {
     const saved = window.localStorage.getItem(WORK_VIEW_KEY);
