@@ -7,6 +7,8 @@
   'use strict';
 
   const STORAGE_KEY = 'ux-portfolio-theme';
+  const PASSWORD_KEY = 'ux-portfolio-unlocked-v5';
+  const PORTFOLIO_PASSWORD_HASH = 'c79f4b69c67a5d7927e5014dcc9bfa2fb1726c0bb9fb7f6e43db47d84e2ac29d';
   const docEl = document.documentElement;
   const body = document.body;
   const nav = document.getElementById('nav');
@@ -25,6 +27,114 @@
   let carouselScrollFrame = null;
   let suppressCarouselActiveSync = false;
   let menuCloseTimer = null;
+
+  function hashPassword(value) {
+    if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) {
+      return Promise.resolve('');
+    }
+
+    const encodedValue = new TextEncoder().encode(value);
+
+    return window.crypto.subtle.digest('SHA-256', encodedValue).then(function (buffer) {
+      return Array.from(new Uint8Array(buffer)).map(function (byte) {
+        return byte.toString(16).padStart(2, '0');
+      }).join('');
+    });
+  }
+
+  function initPasswordGate() {
+    let isUnlocked = false;
+
+    try {
+      isUnlocked = window.sessionStorage.getItem(PASSWORD_KEY) === 'true';
+    } catch (error) {
+      isUnlocked = false;
+    }
+
+    if (isUnlocked) {
+      return;
+    }
+
+    body.classList.add('is-password-locked');
+
+    const gate = document.createElement('div');
+    gate.className = 'password-gate';
+    gate.setAttribute('role', 'dialog');
+    gate.setAttribute('aria-modal', 'true');
+    gate.setAttribute('aria-labelledby', 'passwordGateTitle');
+    gate.innerHTML = [
+      '<div class="password-gate-panel">',
+      '  <div class="password-gate-avatar" aria-hidden="true">',
+      '    <img src="' + (window.location.pathname.includes('/case-studies/') ? '../' : '') + 'images/paul-photo.png" alt="">',
+      '  </div>',
+      '  <p class="password-gate-kicker">Private portfolio</p>',
+      '  <h1 id="passwordGateTitle">Enter password</h1>',
+      '  <p class="password-gate-copy">This portfolio is shared with invited viewers only.</p>',
+      '  <form class="password-gate-form" novalidate>',
+      '    <label class="sr-only" for="portfolioPassword">Password</label>',
+      '    <input id="portfolioPassword" class="password-gate-input" type="password" name="password" autocomplete="current-password" placeholder="Password" required>',
+      '    <button class="password-gate-submit" type="submit" aria-label="Unlock portfolio">',
+      '      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">',
+      '        <path d="M5 12h13"></path>',
+      '        <path d="m13 6 6 6-6 6"></path>',
+      '      </svg>',
+      '    </button>',
+      '    <p class="password-gate-error" aria-live="polite"></p>',
+      '  </form>',
+      '</div>'
+    ].join('');
+
+    document.body.appendChild(gate);
+
+    const form = gate.querySelector('.password-gate-form');
+    const input = gate.querySelector('.password-gate-input');
+    const error = gate.querySelector('.password-gate-error');
+
+    window.setTimeout(function () {
+      input.focus();
+    }, 50);
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const submittedHash = await hashPassword(input.value);
+
+      if (submittedHash === PORTFOLIO_PASSWORD_HASH) {
+        try {
+          window.sessionStorage.setItem(PASSWORD_KEY, 'true');
+        } catch (error) {
+          // If sessionStorage is unavailable, keep access for this page load.
+        }
+
+        gate.classList.add('is-unlocking');
+        input.blur();
+
+        window.setTimeout(function () {
+          body.classList.remove('is-password-locked');
+        }, 360);
+
+        window.setTimeout(function () {
+          gate.remove();
+        }, 920);
+        return;
+      }
+
+      input.setAttribute('aria-invalid', 'true');
+      error.textContent = 'That password is not recognised.';
+      gate.classList.remove('has-error');
+      void gate.offsetWidth;
+      gate.classList.add('has-error');
+      input.select();
+    });
+
+    input.addEventListener('input', function () {
+      input.removeAttribute('aria-invalid');
+      error.textContent = '';
+      gate.classList.remove('has-error');
+    });
+  }
+
+  initPasswordGate();
 
   function getPreferredTheme() {
     const savedTheme = window.localStorage.getItem(STORAGE_KEY);
