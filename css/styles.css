@@ -70,6 +70,257 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+body.is-password-locked {
+  overflow: hidden;
+}
+
+body.is-password-locked > :not(.password-gate) {
+  filter: blur(16px) saturate(1.15);
+  transform: scale(1.015);
+  transform-origin: center;
+  transition: filter 0.54s var(--ease), transform 0.54s var(--ease);
+}
+
+.password-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,0.18), transparent 34%),
+    rgba(0,0,0,0.42);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  opacity: 1;
+  transition: opacity 0.46s var(--ease), transform 0.46s var(--ease), backdrop-filter 0.46s var(--ease);
+}
+
+.password-gate.is-unlocking {
+  opacity: 0;
+  transform: scale(1.018);
+  backdrop-filter: saturate(120%) blur(0);
+  -webkit-backdrop-filter: saturate(120%) blur(0);
+  pointer-events: none;
+}
+
+.password-gate.is-unlocking .password-gate-panel {
+  animation: passwordUnlockPanel 0.72s var(--ease) both;
+}
+
+.password-gate.is-unlocking .password-gate-avatar {
+  animation: passwordUnlockAvatar 0.72s var(--ease) both;
+}
+
+.password-gate.is-unlocking .password-gate-submit {
+  background: #34c759;
+  animation: passwordUnlockButton 0.56s var(--ease) both;
+}
+
+.password-gate-panel {
+  width: min(100%, 420px);
+  padding: 42px 34px 32px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 28px;
+  background: rgba(28,28,30,0.62);
+  backdrop-filter: saturate(180%) blur(34px);
+  -webkit-backdrop-filter: saturate(180%) blur(34px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 30px 80px rgba(0,0,0,0.42);
+  text-align: center;
+}
+
+.password-gate-avatar {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.54), rgba(255,255,255,0.12));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.26),
+    0 14px 34px rgba(0,0,0,0.34);
+  overflow: hidden;
+}
+
+.password-gate-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.password-gate-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.46);
+  margin-bottom: 10px;
+}
+
+.password-gate h1 {
+  font-size: 34px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.password-gate-copy {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.58);
+  margin-bottom: 26px;
+}
+
+.password-gate-form {
+  position: relative;
+}
+
+.password-gate-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 56px 0 18px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.09);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color var(--t), background var(--t), box-shadow var(--t);
+}
+
+.password-gate-input::placeholder {
+  color: rgba(255,255,255,0.38);
+}
+
+.password-gate-input:focus {
+  border-color: rgba(41,151,255,0.78);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 4px rgba(41,151,255,0.18);
+}
+
+.password-gate-input[aria-invalid="true"] {
+  border-color: rgba(255,69,58,0.88);
+  box-shadow: 0 0 0 4px rgba(255,69,58,0.16);
+}
+
+.password-gate-submit {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 11px;
+  background: #0071e3;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--t), background var(--t);
+}
+
+.password-gate-submit:hover {
+  background: #147ce5;
+}
+
+.password-gate-submit:active {
+  transform: scale(0.97);
+}
+
+.password-gate-submit svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-gate-error {
+  min-height: 20px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #ff9f8f;
+}
+
+.password-gate.has-error .password-gate-panel {
+  animation: passwordShake 0.34s var(--ease);
+}
+
+@keyframes passwordShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+
+@keyframes passwordUnlockPanel {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  38% {
+    opacity: 1;
+    transform: translateY(-10px) scale(0.985);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.965);
+  }
+}
+
+@keyframes passwordUnlockAvatar {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.26),
+      0 14px 34px rgba(0,0,0,0.34);
+  }
+  36% {
+    transform: scale(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      0 0 0 8px rgba(52,199,89,0.18),
+      0 18px 44px rgba(0,0,0,0.34);
+  }
+  100% {
+    transform: scale(0.96);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.22),
+      0 0 0 22px rgba(52,199,89,0),
+      0 12px 30px rgba(0,0,0,0.2);
+  }
+}
+
+@keyframes passwordUnlockButton {
+  0% { transform: scale(1); }
+  42% { transform: scale(1.08); }
+  100% { transform: scale(0.98); }
+}
+
 /* -------------------------
    Progress bar
    ------------------------- */
