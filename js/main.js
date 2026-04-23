@@ -7,7 +7,7 @@
   'use strict';
 
   const STORAGE_KEY = 'ux-portfolio-theme';
-  const PASSWORD_KEY = 'ux-portfolio-unlocked-v5';
+  const PASSWORD_KEY = 'ux-portfolio-unlocked-v7';
   const PORTFOLIO_PASSWORD_HASH = 'c79f4b69c67a5d7927e5014dcc9bfa2fb1726c0bb9fb7f6e43db47d84e2ac29d';
   const docEl = document.documentElement;
   const body = document.body;
@@ -66,6 +66,11 @@
       '<div class="password-gate-panel">',
       '  <div class="password-gate-avatar" aria-hidden="true">',
       '    <img src="' + (window.location.pathname.includes('/case-studies/') ? '../' : '') + 'images/paul-photo.png" alt="">',
+      '    <span class="password-gate-success">',
+      '      <svg viewBox="0 0 48 48" focusable="false">',
+      '        <path d="M14 25.2 21.2 32 35 16"></path>',
+      '      </svg>',
+      '    </span>',
       '  </div>',
       '  <p class="password-gate-kicker">Private portfolio</p>',
       '  <h1 id="passwordGateTitle">Enter password</h1>',
@@ -111,11 +116,11 @@
 
         window.setTimeout(function () {
           body.classList.remove('is-password-locked');
-        }, 360);
+        }, 1240);
 
         window.setTimeout(function () {
           gate.remove();
-        }, 920);
+        }, 1740);
         return;
       }
 

@@ -111,24 +111,28 @@ body.is-password-locked > :not(.password-gate) {
 }
 
 .password-gate.is-unlocking {
-  opacity: 0;
+  opacity: 1;
   transform: scale(1.018);
   backdrop-filter: saturate(120%) blur(0);
   -webkit-backdrop-filter: saturate(120%) blur(0);
+  animation: passwordGateFade 1.56s var(--ease) both;
   pointer-events: none;
 }
 
 .password-gate.is-unlocking .password-gate-panel {
-  animation: passwordUnlockPanel 0.72s var(--ease) both;
+  animation: passwordUnlockPanel 1.42s var(--ease) both;
 }
 
 .password-gate.is-unlocking .password-gate-avatar {
   animation: passwordUnlockAvatar 0.72s var(--ease) both;
 }
 
-.password-gate.is-unlocking .password-gate-submit {
-  background: #34c759;
-  animation: passwordUnlockButton 0.56s var(--ease) both;
+.password-gate.is-unlocking .password-gate-success {
+  animation: passwordSuccessCircle 0.52s var(--ease) 0.06s both;
+}
+
+.password-gate.is-unlocking .password-gate-success path {
+  animation: passwordSuccessTick 0.42s ease-out 0.34s both;
 }
 
 .password-gate-panel {
@@ -146,6 +150,7 @@ body.is-password-locked > :not(.password-gate) {
 }
 
 .password-gate-avatar {
+  position: relative;
   width: 78px;
   height: 78px;
   margin: 0 auto 24px;
@@ -163,6 +168,36 @@ body.is-password-locked > :not(.password-gate) {
   height: 100%;
   border-radius: inherit;
   object-fit: cover;
+}
+
+.password-gate-success {
+  position: absolute;
+  inset: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.28),
+    0 0 0 0 rgba(52,199,89,0.24);
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+.password-gate-success svg {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.password-gate-success path {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
 }
 
 .password-gate-kicker {
@@ -282,9 +317,13 @@ body.is-password-locked > :not(.password-gate) {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-  38% {
+  18% {
     opacity: 1;
-    transform: translateY(-10px) scale(0.985);
+    transform: translateY(-6px) scale(0.985);
+  }
+  72% {
+    opacity: 1;
+    transform: translateY(-6px) scale(0.985);
   }
   100% {
     opacity: 0;
@@ -315,10 +354,42 @@ body.is-password-locked > :not(.password-gate) {
   }
 }
 
-@keyframes passwordUnlockButton {
-  0% { transform: scale(1); }
-  42% { transform: scale(1.08); }
-  100% { transform: scale(0.98); }
+@keyframes passwordSuccessCircle {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.28),
+      0 0 0 0 rgba(52,199,89,0.24);
+  }
+  66% {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.28),
+      0 0 0 9px rgba(52,199,89,0.14);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.28),
+      0 0 0 18px rgba(52,199,89,0);
+  }
+}
+
+@keyframes passwordSuccessTick {
+  0% { stroke-dashoffset: 36; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes passwordGateFade {
+  0%, 72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* -------------------------
