@@ -7,8 +7,8 @@
   'use strict';
 
   const STORAGE_KEY = 'ux-portfolio-theme';
-  const PASSWORD_KEY = 'ux-portfolio-unlocked-v7';
-  const PORTFOLIO_PASSWORD_HASH = 'c79f4b69c67a5d7927e5014dcc9bfa2fb1726c0bb9fb7f6e43db47d84e2ac29d';
+  const PASSWORD_KEY = 'ux-portfolio-unlocked-v8';
+  const PORTFOLIO_PASSWORD_HASH = '2516158c39e80d6a6a06298f007fd35a8fb3984dbe14285025fdc32db94b9b35';
   const docEl = document.documentElement;
   const body = document.body;
   const nav = document.getElementById('nav');
@@ -42,11 +42,19 @@
     });
   }
 
-  function initPasswordGate() {
+  function initPasswordGate(forceLock) {
+    if (document.querySelector('.password-gate')) {
+      return;
+    }
+
     let isUnlocked = false;
 
     try {
-      isUnlocked = window.sessionStorage.getItem(PASSWORD_KEY) === 'true';
+      if (forceLock) {
+        window.sessionStorage.removeItem(PASSWORD_KEY);
+      } else {
+        isUnlocked = window.sessionStorage.getItem(PASSWORD_KEY) === 'true';
+      }
     } catch (error) {
       isUnlocked = false;
     }
@@ -71,13 +79,19 @@
       '        <path d="M14 25.2 21.2 32 35 16"></path>',
       '      </svg>',
       '    </span>',
+      '    <span class="password-gate-failure">',
+      '      <svg viewBox="0 0 48 48" focusable="false">',
+      '        <path d="M16 16 32 32"></path>',
+      '        <path d="M32 16 16 32"></path>',
+      '      </svg>',
+      '    </span>',
       '  </div>',
       '  <p class="password-gate-kicker">Private portfolio</p>',
       '  <h1 id="passwordGateTitle">Enter password</h1>',
       '  <p class="password-gate-copy">This portfolio is shared with invited viewers only.</p>',
       '  <form class="password-gate-form" novalidate>',
       '    <label class="sr-only" for="portfolioPassword">Password</label>',
-      '    <input id="portfolioPassword" class="password-gate-input" type="password" name="password" autocomplete="current-password" placeholder="Password" required>',
+      '    <input id="portfolioPassword" class="password-gate-input" type="text" name="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Password" required>',
       '    <button class="password-gate-submit" type="submit" aria-label="Unlock portfolio">',
       '      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">',
       '        <path d="M5 12h13"></path>',
@@ -127,8 +141,10 @@
       input.setAttribute('aria-invalid', 'true');
       error.textContent = 'That password is not recognised.';
       gate.classList.remove('has-error');
+      gate.classList.remove('has-failure-mark');
       void gate.offsetWidth;
       gate.classList.add('has-error');
+      gate.classList.add('has-failure-mark');
       input.select();
     });
 
@@ -140,6 +156,35 @@
   }
 
   initPasswordGate();
+
+  function initPasswordTestTrigger() {
+    const navActions = document.querySelector('.nav-actions');
+
+    if (!navActions || document.getElementById('passwordGateTrigger')) {
+      return;
+    }
+
+    const lockButton = document.createElement('button');
+    lockButton.className = 'nav-lock-test';
+    lockButton.id = 'passwordGateTrigger';
+    lockButton.type = 'button';
+    lockButton.setAttribute('aria-label', 'Show password screen');
+    lockButton.innerHTML = [
+      '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">',
+      '  <path d="M7.25 10.25V7.8a4.75 4.75 0 0 1 9.5 0v2.45"></path>',
+      '  <rect x="5.25" y="10.25" width="13.5" height="10" rx="2.8"></rect>',
+      '</svg>'
+    ].join('');
+
+    navActions.insertBefore(lockButton, themeToggle || menuToggle || null);
+
+    lockButton.addEventListener('click', function () {
+      closeMenu(true);
+      initPasswordGate(true);
+    });
+  }
+
+  initPasswordTestTrigger();
 
   function getPreferredTheme() {
     const savedTheme = window.localStorage.getItem(STORAGE_KEY);

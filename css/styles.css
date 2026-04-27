@@ -135,6 +135,22 @@ body.is-password-locked > :not(.password-gate) {
   animation: passwordSuccessTick 0.42s ease-out 0.34s both;
 }
 
+.password-gate.has-failure-mark .password-gate-failure {
+  animation: passwordFailureCircle 1.8s var(--ease) both;
+}
+
+.password-gate.has-failure-mark .password-gate-failure path {
+  animation: passwordFailureCross 0.52s ease-out both;
+}
+
+.password-gate.has-failure-mark .password-gate-failure path:nth-child(1) {
+  animation-delay: 0.28s;
+}
+
+.password-gate.has-failure-mark .password-gate-failure path:nth-child(2) {
+  animation-delay: 0.46s;
+}
+
 .password-gate-panel {
   width: min(100%, 420px);
   padding: 42px 34px 32px;
@@ -185,7 +201,23 @@ body.is-password-locked > :not(.password-gate) {
   transform: scale(0.72);
 }
 
-.password-gate-success svg {
+.password-gate-failure {
+  position: absolute;
+  inset: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ff453a;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.24),
+    0 0 0 0 rgba(255,69,58,0.22);
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+.password-gate-success svg,
+.password-gate-failure svg {
   width: 48px;
   height: 48px;
   fill: none;
@@ -198,6 +230,11 @@ body.is-password-locked > :not(.password-gate) {
 .password-gate-success path {
   stroke-dasharray: 36;
   stroke-dashoffset: 36;
+}
+
+.password-gate-failure path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
 }
 
 .password-gate-kicker {
@@ -240,11 +277,22 @@ body.is-password-locked > :not(.password-gate) {
   font: inherit;
   font-size: 16px;
   outline: none;
+  -webkit-text-security: disc;
   transition: border-color var(--t), background var(--t), box-shadow var(--t);
 }
 
 .password-gate-input::placeholder {
   color: rgba(255,255,255,0.38);
+}
+
+/* Hide native browser password field indicators in this custom input */
+.password-gate-input::-webkit-caps-lock-indicator,
+.password-gate-input::-webkit-credentials-auto-fill-button,
+.password-gate-input::-ms-reveal,
+.password-gate-input::-ms-clear {
+  display: none;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .password-gate-input:focus {
@@ -380,6 +428,35 @@ body.is-password-locked > :not(.password-gate) {
 
 @keyframes passwordSuccessTick {
   0% { stroke-dashoffset: 36; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes passwordFailureCircle {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.24),
+      0 0 0 0 rgba(255,69,58,0.22);
+  }
+  18%, 78% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.24),
+      0 0 0 9px rgba(255,69,58,0.12);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.24),
+      0 0 0 18px rgba(255,69,58,0);
+  }
+}
+
+@keyframes passwordFailureCross {
+  0% { stroke-dashoffset: 24; }
   100% { stroke-dashoffset: 0; }
 }
 
@@ -588,6 +665,44 @@ body[data-theme="light"] .nav-avatar {
 .theme-toggle:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--accent) 55%, white);
   outline-offset: 3px;
+}
+
+.nav-lock-test {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-off) 42%, transparent);
+  color: var(--text-1);
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    0 10px 20px rgba(0,0,0,0.12);
+  transition: background var(--t), border-color var(--t), transform var(--t), color var(--t);
+}
+
+.nav-lock-test:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+}
+
+.nav-lock-test:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, white);
+  outline-offset: 3px;
+}
+
+.nav-lock-test svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .theme-toggle-icon {
