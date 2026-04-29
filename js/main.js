@@ -24,6 +24,8 @@
   const workArrowNext = document.querySelector('.work-carousel-arrow--next');
   const workViewButtons = Array.from(document.querySelectorAll('.work-view-btn'));
   const caseStudyCount = document.querySelector('[data-case-study-count]');
+  const CAROUSEL_SLIDE_DURATION = 980;
+  const CAROUSEL_ACTIVE_PROGRESS = 0.5;
   let carouselScrollFrame = null;
   let suppressCarouselActiveSync = false;
   let menuCloseTimer = null;
@@ -156,35 +158,6 @@
   }
 
   initPasswordGate();
-
-  function initPasswordTestTrigger() {
-    const navActions = document.querySelector('.nav-actions');
-
-    if (!navActions || document.getElementById('passwordGateTrigger')) {
-      return;
-    }
-
-    const lockButton = document.createElement('button');
-    lockButton.className = 'nav-lock-test';
-    lockButton.id = 'passwordGateTrigger';
-    lockButton.type = 'button';
-    lockButton.setAttribute('aria-label', 'Show password screen');
-    lockButton.innerHTML = [
-      '<svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">',
-      '  <path d="M7.25 10.25V7.8a4.75 4.75 0 0 1 9.5 0v2.45"></path>',
-      '  <rect x="5.25" y="10.25" width="13.5" height="10" rx="2.8"></rect>',
-      '</svg>'
-    ].join('');
-
-    navActions.insertBefore(lockButton, themeToggle || menuToggle || null);
-
-    lockButton.addEventListener('click', function () {
-      closeMenu(true);
-      initPasswordGate(true);
-    });
-  }
-
-  initPasswordTestTrigger();
 
   function getPreferredTheme() {
     const savedTheme = window.localStorage.getItem(STORAGE_KEY);
@@ -374,6 +347,16 @@
     });
   }
 
+  function activateCaseCard(card) {
+    if (!card) {
+      return;
+    }
+
+    caseCards.forEach(function (caseCard) {
+      caseCard.classList.toggle('is-active', caseCard === card);
+    });
+  }
+
   function animateCarouselScroll(targetLeft, duration, onApproachComplete, onComplete) {
     if (!workList) {
       return;
@@ -409,10 +392,10 @@
     function step(now) {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / duration);
-      const eased = 1 - Math.pow(1 - progress, 4);
+      const eased = 1 - Math.pow(1 - progress, 3);
       workList.scrollLeft = startLeft + (distance * eased);
 
-      if (!approachCompleteCalled && progress >= 0.45) {
+      if (!approachCompleteCalled && progress >= CAROUSEL_ACTIVE_PROGRESS) {
         approachCompleteCalled = true;
         if (typeof onApproachComplete === 'function') {
           onApproachComplete();
@@ -440,11 +423,36 @@
 
     if (workList && workList.classList.contains('work-list--carousel')) {
       const targetLeft = card.offsetLeft - ((workList.clientWidth - card.offsetWidth) / 2);
-      animateCarouselScroll(targetLeft, duration || 360, onApproachComplete, onComplete);
+      animateCarouselScroll(targetLeft, duration || CAROUSEL_SLIDE_DURATION, onApproachComplete, onComplete);
       return;
     }
 
     card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+  }
+
+  function moveCarouselToCard(targetCard) {
+    if (!targetCard) {
+      return;
+    }
+
+    if (!workList || !workList.classList.contains('work-list--carousel')) {
+      centerCaseCard(targetCard);
+      return;
+    }
+
+    if (targetCard.classList.contains('is-active')) {
+      return;
+    }
+
+    suppressCarouselActiveSync = true;
+    centerCaseCard(targetCard, CAROUSEL_SLIDE_DURATION, function () {
+      activateCaseCard(targetCard);
+      updateCarouselArrows();
+    }, function () {
+      suppressCarouselActiveSync = false;
+      setActiveCaseCard();
+      updateCarouselArrows();
+    });
   }
 
   function updateCarouselArrows() {
@@ -517,7 +525,7 @@
     card.addEventListener('click', function (event) {
       if (!card.classList.contains('is-active')) {
         event.preventDefault();
-        centerCaseCard(card);
+        moveCarouselToCard(card);
       }
     });
   });
@@ -536,15 +544,7 @@
       return;
     }
 
-    suppressCarouselActiveSync = true;
-    centerCaseCard(targetCard, 900, function () {
-      suppressCarouselActiveSync = false;
-      setActiveCaseCard();
-      updateCarouselArrows();
-    }, function () {
-      suppressCarouselActiveSync = false;
-      updateCarouselArrows();
-    });
+    moveCarouselToCard(targetCard);
   }
 
   if (workArrowPrev) {

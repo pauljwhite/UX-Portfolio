@@ -667,44 +667,6 @@ body[data-theme="light"] .nav-avatar {
   outline-offset: 3px;
 }
 
-.nav-lock-test {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--bg-off) 42%, transparent);
-  color: var(--text-1);
-  cursor: pointer;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    0 10px 20px rgba(0,0,0,0.12);
-  transition: background var(--t), border-color var(--t), transform var(--t), color var(--t);
-}
-
-.nav-lock-test:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
-}
-
-.nav-lock-test:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--accent) 55%, white);
-  outline-offset: 3px;
-}
-
-.nav-lock-test svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .theme-toggle-icon {
   position: absolute;
   display: inline-flex;
@@ -1108,7 +1070,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   border-top: 1px solid var(--border);
   text-align: left;
   background: transparent;
-  transition: background 0.7s var(--ease), padding 0.7s var(--ease), transform 0.7s var(--ease), opacity 0.7s var(--ease);
+  transition: background 0.7s var(--ease), grid-template-columns 0.82s cubic-bezier(0.45, 0, 0.25, 1), padding 0.82s cubic-bezier(0.45, 0, 0.25, 1), transform 0.7s var(--ease), opacity 0.7s var(--ease);
   position: relative;
   overflow: hidden;
   opacity: 0.72;
@@ -1187,7 +1149,11 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   opacity: 0;
   overflow: hidden;
   transform: translateY(-8px);
-  transition: max-height 0.72s var(--ease), opacity 0.5s var(--ease), transform 0.72s var(--ease), margin-top 0.72s var(--ease);
+  transition:
+    max-height 0.86s cubic-bezier(0.45, 0, 0.25, 1),
+    opacity 0.72s cubic-bezier(0.4, 0, 0.2, 1) 0.08s,
+    transform 0.86s cubic-bezier(0.45, 0, 0.25, 1),
+    margin-top 0.86s cubic-bezier(0.45, 0, 0.25, 1);
 }
 
 .case-card.is-active .case-eyebrow {
@@ -1305,7 +1271,12 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   opacity: 0;
   overflow: hidden;
   transform: translateY(-8px);
-  transition: max-height 0.72s var(--ease), opacity 0.5s var(--ease), transform 0.72s var(--ease), margin-top 0.72s var(--ease), gap var(--t);
+  transition:
+    max-height 0.86s cubic-bezier(0.45, 0, 0.25, 1),
+    opacity 0.72s cubic-bezier(0.4, 0, 0.2, 1) 0.12s,
+    transform 0.86s cubic-bezier(0.45, 0, 0.25, 1),
+    margin-top 0.86s cubic-bezier(0.45, 0, 0.25, 1),
+    gap var(--t);
 }
 
 .case-arrow::after {
@@ -1324,6 +1295,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
 .case-card:hover .case-arrow::after { transform: translateX(3px); }
 
 .work-list--carousel .case-card {
+  grid-template-columns: 220px minmax(0, 1fr);
   flex: 0 0 min(80vw, 760px);
   min-width: 520px;
   height: 100%;
@@ -1333,6 +1305,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   background: color-mix(in srgb, var(--bg-off) 54%, transparent);
   scroll-snap-align: center;
   opacity: 0.64;
+  transition: background 0.82s cubic-bezier(0.45, 0, 0.25, 1), border-color 0.82s cubic-bezier(0.45, 0, 0.25, 1), grid-template-columns 0.82s cubic-bezier(0.45, 0, 0.25, 1), padding 0.82s cubic-bezier(0.45, 0, 0.25, 1), transform 0.7s var(--ease), opacity 0.7s var(--ease);
 }
 
 .work-list--carousel .case-card.animate-in,
@@ -1756,6 +1729,7 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   .work-carousel-arrow--prev { left: 6px; }
   .work-carousel-arrow--next { right: 6px; }
   .work-list--carousel .case-card {
+    grid-template-columns: 180px minmax(0, 1fr);
     flex-basis: min(84vw, 700px);
     min-width: 460px;
   }
@@ -1922,13 +1896,14 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   .work-carousel-arrow--prev { left: 24px; }
   .work-carousel-arrow--next { right: 24px; }
   .work-list--carousel .case-card {
+    grid-template-columns: 136px minmax(0, 1fr);
     flex-basis: 84vw;
     min-width: 84vw;
     height: 100%;
     align-items: center;
     border-radius: 28px;
     padding: 20px 18px;
-    transition: background 0.45s var(--ease), border-color 0.45s var(--ease), opacity 0.45s var(--ease);
+    transition: background 0.82s cubic-bezier(0.45, 0, 0.25, 1), border-color 0.82s cubic-bezier(0.45, 0, 0.25, 1), grid-template-columns 0.82s cubic-bezier(0.45, 0, 0.25, 1), padding 0.82s cubic-bezier(0.45, 0, 0.25, 1), opacity 0.7s var(--ease);
   }
   .work-list--carousel .case-card.is-active {
     grid-template-columns: 136px minmax(0, 1fr);

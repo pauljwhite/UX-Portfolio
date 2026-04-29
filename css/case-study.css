@@ -166,6 +166,24 @@
   transform: translateY(10%);
 }
 
+.cs-cover--ai-transformation {
+  height: calc(min(70vw, 900px) - 88px);
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 40px;
+  align-items: center;
+}
+
+.cs-cover--ai-transformation img {
+  width: min(94vw, 1480px);
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center top;
+  transform: translateY(3%);
+}
+
 .cs-cover--luna {
   height: min(58vw, 720px);
   box-sizing: border-box;
