@@ -26,8 +26,11 @@
   const caseStudyCount = document.querySelector('[data-case-study-count]');
   const CAROUSEL_SLIDE_DURATION = 980;
   const CAROUSEL_ACTIVE_PROGRESS = 0.5;
+  const WORK_VIEW_TRANSITION_DURATION = 940;
+  const WORK_VIEW_TRANSITION_STAGGER = 58;
   let carouselScrollFrame = null;
   let suppressCarouselActiveSync = false;
+  let isWorkViewTransitioning = false;
   let menuCloseTimer = null;
 
   function hashPassword(value) {
@@ -288,6 +291,10 @@
 
     const nextView = view === 'carousel' ? 'carousel' : 'list';
     const isCarousel = nextView === 'carousel';
+    const isCurrentCarousel = workList.classList.contains('work-list--carousel');
+    const shouldAnimateViewChange = shouldCenterActiveCard && (isCarousel !== isCurrentCarousel) && caseCards.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const previousRects = shouldAnimateViewChange ? getCaseCardRects() : null;
+
     workList.classList.toggle('work-list--carousel', isCarousel);
     if (workCarouselShell) {
       workCarouselShell.classList.toggle('is-carousel', isCarousel);
@@ -299,15 +306,92 @@
       button.setAttribute('aria-pressed', String(isActive));
     });
 
-    setActiveCaseCard();
-    updateCarouselArrows();
-
     if (isCarousel && shouldCenterActiveCard) {
       const activeCard = workList.querySelector('.case-card.is-active') || caseCards[0];
       if (activeCard) {
-        activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        workList.scrollLeft = getCenteredCaseCardScrollLeft(activeCard);
       }
+    } else if (!isCarousel) {
+      workList.scrollLeft = 0;
     }
+
+    setActiveCaseCard();
+    updateCarouselArrows();
+
+    if (previousRects) {
+      animateWorkViewChange(previousRects, isCarousel ? 'carousel' : 'list');
+    }
+  }
+
+  function getCaseCardRects() {
+    const rects = new Map();
+    caseCards.forEach(function (card) {
+      rects.set(card, card.getBoundingClientRect());
+    });
+    return rects;
+  }
+
+  function getCenteredCaseCardScrollLeft(card) {
+    if (!workList || !card) {
+      return 0;
+    }
+
+    const maxScroll = Math.max(0, workList.scrollWidth - workList.clientWidth);
+    const targetLeft = card.offsetLeft - ((workList.clientWidth - card.offsetWidth) / 2);
+    return Math.max(0, Math.min(maxScroll, targetLeft));
+  }
+
+  function animateWorkViewChange(previousRects, nextView) {
+    if (!workList || !previousRects) {
+      return;
+    }
+
+    const easing = 'cubic-bezier(0.32, 0, 0.18, 1)';
+    const transitionDirection = nextView === 'list' ? 1 : -1;
+    const maxDelay = Math.max(0, (caseCards.length - 1) * WORK_VIEW_TRANSITION_STAGGER);
+
+    isWorkViewTransitioning = true;
+    workList.classList.add('is-view-transitioning');
+
+    caseCards.forEach(function (card, index) {
+      const first = previousRects.get(card);
+      const last = card.getBoundingClientRect();
+
+      if (!first || !last) {
+        return;
+      }
+
+      const deltaX = first.left - last.left;
+      const deltaY = first.top - last.top;
+      const delayIndex = transitionDirection > 0 ? index : (caseCards.length - 1 - index);
+      const delay = delayIndex * WORK_VIEW_TRANSITION_STAGGER;
+      card.style.transition = 'none';
+      card.style.opacity = '0.72';
+      card.style.transform = 'translate(' + deltaX.toFixed(2) + 'px, ' + deltaY.toFixed(2) + 'px)';
+      card.style.setProperty('--view-transition-delay', delay + 'ms');
+    });
+
+    window.requestAnimationFrame(function () {
+      caseCards.forEach(function (card) {
+        const delay = card.style.getPropertyValue('--view-transition-delay') || '0ms';
+        card.style.transition = 'transform ' + WORK_VIEW_TRANSITION_DURATION + 'ms ' + easing + ' ' + delay;
+        card.style.opacity = '';
+        card.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    window.setTimeout(function () {
+      caseCards.forEach(function (card) {
+        card.style.transition = '';
+        card.style.transform = '';
+        card.style.opacity = '';
+        card.style.removeProperty('--view-transition-delay');
+      });
+      workList.classList.remove('is-view-transitioning');
+      isWorkViewTransitioning = false;
+      setActiveCaseCard();
+      updateCarouselArrows();
+    }, WORK_VIEW_TRANSITION_DURATION + maxDelay + 80);
   }
 
   function setActiveCaseCard() {
@@ -422,8 +506,7 @@
     }
 
     if (workList && workList.classList.contains('work-list--carousel')) {
-      const targetLeft = card.offsetLeft - ((workList.clientWidth - card.offsetWidth) / 2);
-      animateCarouselScroll(targetLeft, duration || CAROUSEL_SLIDE_DURATION, onApproachComplete, onComplete);
+      animateCarouselScroll(getCenteredCaseCardScrollLeft(card), duration || CAROUSEL_SLIDE_DURATION, onApproachComplete, onComplete);
       return;
     }
 
@@ -513,7 +596,7 @@
     if (workList) {
       workList.addEventListener('scroll', function () {
         if (workList.classList.contains('work-list--carousel')) {
-          if (!suppressCarouselActiveSync) {
+          if (!suppressCarouselActiveSync && !isWorkViewTransitioning) {
             setActiveCaseCard();
           }
           updateCarouselArrows();

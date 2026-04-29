@@ -997,6 +997,21 @@ body[data-theme="light"] .theme-toggle-icon-moon {
   scroll-snap-type: none;
 }
 
+.work-list.is-view-transitioning,
+.work-list.work-list--carousel.is-view-transitioning {
+  scroll-snap-type: none;
+  pointer-events: none;
+}
+
+.work-list.is-view-transitioning .case-card {
+  transition:
+    transform 0.94s cubic-bezier(0.32, 0, 0.18, 1),
+    background 0.62s cubic-bezier(0.32, 0, 0.18, 1),
+    border-color 0.62s cubic-bezier(0.32, 0, 0.18, 1),
+    opacity 0.72s cubic-bezier(0.32, 0, 0.18, 1);
+  will-change: transform, opacity;
+}
+
 .work-list.work-list--carousel::-webkit-scrollbar {
   display: none;
 }
