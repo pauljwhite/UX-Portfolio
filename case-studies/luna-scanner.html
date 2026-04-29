@@ -91,8 +91,16 @@
       <div class="cs-two-col">
         <div class="cs-col-label"><h2>The Problem</h2></div>
         <div class="cs-col-content">
-          <p>Large enterprise products accumulate UI drift quietly. A native button replaces a Luna design-system button. A custom control behaves almost like the approved component. A page inherits older Material UI patterns that were never fully migrated. Each individual decision can look small, but together they weaken consistency, accessibility, maintainability, and customer trust.</p>
-          <p>Manual review was not enough. Designers could spot issues in screenshots or design reviews, but they could not continuously inspect every live or in-progress page. Engineers could search the repo, but visual and DOM-level drift was harder to connect back to the component system. We needed a way to inspect the product itself and link visible UI back to implementation evidence.</p>
+          <div class="cs-problems">
+            <div class="cs-problem">
+              <h4>Silent UI Drift at Scale</h4>
+              <p>Large enterprise products accumulate design-system drift quietly. A native button replaces a Luna component, a near-match custom control slips in, or older Material UI patterns survive migration. Each change appears small in isolation, but together they reduce consistency, accessibility, maintainability, and customer trust.</p>
+            </div>
+            <div class="cs-problem">
+              <h4>Manual Review Could Not Keep Up</h4>
+              <p>Manual checks were too slow and too partial for the pace of delivery. Designers could catch issues in reviews, and engineers could search code, but neither approach continuously linked live rendered UI back to design-system implementation evidence. We needed automated, page-level inspection with actionable findings.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -104,6 +112,11 @@
       <div class="cs-two-col">
         <div class="cs-col-label"><h2>The Approach</h2></div>
         <div class="cs-col-content">
+          <div class="cs-problem cs-problem--blue-bullet cs-problem--approach-card">
+            <h4><span class="cs-bullet-blue" aria-hidden="true"></span>Delivery Model Exploration</h4>
+              <p>I tested three implementation paths: a standalone app, a web app, and a Chrome extension. For Sophos Central, the extension model proved strongest because it mitigated authentication and session-friction issues that would have made an external app flow harder to adopt. Exploration and prototyping were done with a mix of <span class="cs-app-inline"><img class="cs-app-icon-img" src="https://cursor.com/favicon.ico" alt="" aria-hidden="true">Cursor</span> and <span class="cs-app-inline"><img class="cs-app-icon-img" src="https://cdn.simpleicons.org/claude/F97316" alt="" aria-hidden="true">Claude Code</span>, and a proof of concept was built that referenced the frontend UI repository to evaluate build rules, compliance, and component scores.</p>
+          </div>
+
           <div class="cs-luna-approach">
             <figure class="cs-img cs-img--luna-injection" tabindex="0">
               <img src="../images/luna-scanner-injection.png" alt="Design System Compliance Scanner computing compliance scores after injecting checks into the page">

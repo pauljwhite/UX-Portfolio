@@ -498,7 +498,7 @@ body.is-password-locked > :not(.password-gate) {
 .nav::before {
   content: "";
   position: absolute;
-  inset: 0 max(16px, calc((100vw - var(--max)) / 2 + 16px));
+  inset: 0 max(16px, calc((100% - var(--max)) / 2));
   background: var(--nav-blur);
   border: 1px solid var(--nav-border);
   border-radius: 999px;
@@ -529,8 +529,8 @@ body.is-password-locked > :not(.password-gate) {
 
 .nav-inner {
   position: relative;
-  width: calc(100% - 32px);
-  max-width: calc(var(--max) - 32px);
+  width: 100%;
+  max-width: var(--max);
   margin: 0 auto;
   padding: 0 6px;
   height: 100%;
